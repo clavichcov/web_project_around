@@ -1,0 +1,59 @@
+.elements{
+    display: grid;
+    width: 880px;
+    color: #000000;
+    margin-top: 49px;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto;
+    gap: 20px 17px;
+}
+
+.element{
+    height: 361px;
+    width: 282px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.element__rectangle{
+    height: 100%;
+    width: 100%;
+    background-color: #FFFFFF;
+}
+
+.element__image{
+    height: 282px;
+    width: 282px;
+}
+
+.element__content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.element__text{
+    margin-left: 21px;
+    width: 246px;
+    font-family: 'Inter Black', Inter,  sans-serif;
+    font-size: 24px;
+    line-height: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.element__button{
+    height: 19px;
+    width: 21px;
+    margin-right: 18px;
+    background-image: url(../images/btn-like-nr.png);
+    background-color: #FFFFFF;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.element__button:hover{
+    opacity: 60%;
+}
