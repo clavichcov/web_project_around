@@ -43,6 +43,7 @@
 }
 
 .profile__text{
+    align-self: flex-end;
     margin: 16px 0 0;
     
 }
@@ -62,6 +63,7 @@
 
 .profile__button_edit:hover{
     opacity: 60%;
+    cursor: pointer;
 }
 
 .profile__button_add{
@@ -76,4 +78,5 @@
 
 .profile__button_add:hover{
     opacity: 60%;
+    cursor: pointer;
 }

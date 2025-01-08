@@ -10,6 +10,7 @@ let textText = document.querySelector('.profile__text');
 let textName = textTitle.textContent;
 let textAbout = textText.textContent;
 let buttonSubmit = document.querySelector('.form__submit');
+/*let formElement = document.querySelector('');*/
 
 function open() {
     if (openPopup.style.display === 'none' || openPopup.style.display === '') {
@@ -29,6 +30,7 @@ function open() {
     
     
 }
+
 function close() {
     if (closePopup.style.display === 'flex'){
         closePopup.style.display = 'none';
@@ -51,6 +53,20 @@ function like() {
         }
 }
 
+function handleProfileFormSubmit(evt) {
+    
+    evt.preventDefault();
+    console.log(inputName.value);
+    console.log(inputAbout.value);
+    textTitle.textContent = inputName.value;
+    textText.textContent = inputAbout.value;
+    closePopup.style.display = 'none';
+        inputName.value = '';
+        inputAbout.value = '';
+        buttonSubmit.style.backgroundColor = '#FFFFFF'; 
+}
+
 buttonEdit.addEventListener("click" , open);
 buttonClose.addEventListener("click" , close);
 buttonsLike.forEach(button => {button.addEventListener('click', like)}); 
+buttonSubmit.addEventListener('click', handleProfileFormSubmit);
