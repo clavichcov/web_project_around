@@ -97,3 +97,16 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+
+@media screen and (max-width:768px){
+
+    .header{
+        max-width: 768px;
+    }
+
+}
+
+@media screen and (max-width:320px){
+
+
+}
