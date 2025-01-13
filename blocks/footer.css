@@ -1,8 +1,10 @@
 .footer{
-    display: flex;
-    margin-top: 67px;
-    align-items:flex-start;
+    
+    margin: 67px 200px 0 200px;
+    padding-bottom: 60px;
     width: 880px;
+    
+    
     
     
     

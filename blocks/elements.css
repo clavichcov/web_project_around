@@ -1,6 +1,6 @@
 .elements{
     display: grid;
-    width: 880px;
+    
     color: #000000;
     margin-top: 49px;
     grid-template-columns: auto auto auto;

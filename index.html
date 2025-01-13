@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="./pages/index.css" />
         <script src="./js/script.js" defer></script>
     </head>
-    <body>
+    <body class="body">
         <div class="page">
             <header class="header">
                 <img
@@ -167,27 +167,7 @@
                     </div>
                 </section> 
                 
-                <section class="popup">
-                   
-                    <div class="popup__content">
-                        
-                        <form class="form">
-                            <h2 class="form__title">Editar perfil</h2>
-                            <input class="form__input form__input_name" type="text" placeholder="Nombre">
-                            <input class="form__input form__input_about" type="text" placeholder="Acerca de mí">
-                            <button type="button" class="form__submit">Guardar</button>
-                            <div class="loader" id="loader">
-                                <div id="loader__circle">
-                                                                
-                                </div>
-                            </div>
-                        </form>
-                        <button class="popup__close">
-                        
-                        </button>
-                        
-                    </div>
-                </section>
+                
             </main>
             <footer class="footer">
                 <p class="footer__copyright">
@@ -195,5 +175,26 @@
                   </p>
             </footer> 
         </div>
+        <section class="popup">
+                   
+            <div class="popup__content">
+                
+                <form class="form">
+                    <h2 class="form__title">Editar perfil</h2>
+                    <input class="form__input form__input_name" type="text" placeholder="Nombre">
+                    <input class="form__input form__input_about" type="text" placeholder="Acerca de mí">
+                    <button type="button" class="form__submit">Guardar</button>
+                    <div class="loader" id="loader">
+                        <div class="loader__id" id="loader__circle">
+                                                        
+                        </div>
+                    </div>
+                </form>
+                <button class="popup__close">
+                
+                </button>
+                
+            </div>
+        </section>
     </body>
 </html>
