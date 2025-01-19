@@ -59,12 +59,12 @@
     cursor: pointer;
 }
 
-@media screen and (max-width:768px){
-
-
-}
-
 @media screen and (max-width:320px){
-
-
+    .elements{
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        width: 282px;
+        gap: 20px;
+    }
+    
 }

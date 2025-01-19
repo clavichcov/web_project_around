@@ -18,20 +18,11 @@
     
 }
 
-@media screen and (max-width: 768px){
-    .footer{
-        max-width: 768px;
-        padding-top: 44px;
-        
-    }
-    
-    
-}
-
 @media screen and (max-width:320px){
     .footer{
-        max-width: 320px;
-        padding-top: 65px;
+        width: 282px;
+        margin: 0;
+        padding: 0 19px 36px 19px;
         
     }
 }

@@ -98,15 +98,30 @@
     100% { transform: rotate(360deg); }
 }
 
-@media screen and (max-width:768px){
+@media screen and (max-width:320px){
+    .popup__content{
+        width: 282px;
 
-    .header{
-        max-width: 768px;
     }
 
-}
+    .popup__close{
 
-@media screen and (max-width:320px){
+    }
+    
+    .form{
+        padding: 25px 22px 25px 22px;
+        width: 282px;
+    }
 
+    .form__title{
+        width: 238px;
+    }
 
+    .form__input{
+        width: 238px;
+    }
+
+    .form__submit{
+        width: 238px;
+    }
 }
