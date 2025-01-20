@@ -10,7 +10,7 @@ let textText = document.querySelector('.profile__text');
 let textName = textTitle.textContent;
 let textAbout = textText.textContent;
 let buttonSubmit = document.querySelector('.form__submit');
-/*let formElement = document.querySelector('');*/
+const loader_Timeout = 5000;
 
 function open() {
     if (openPopup.style.display === 'none' || openPopup.style.display === '') {
@@ -23,7 +23,7 @@ function open() {
             inputName.value = textName;
             inputAbout.value = textAbout;
             buttonSubmit.style.backgroundColor = '#000000';
-        }, 5000);
+        }, loader_Timeout);
     } else {
         openPopup.style.display = 'none';
     }
