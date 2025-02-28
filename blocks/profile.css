@@ -33,6 +33,7 @@
     height: 77px;
     width: 415px;
     margin-left: 30px;
+    
 }
 
 .profile__title{
@@ -40,6 +41,11 @@
     font-family: 'Inter Medium', Inter,  sans-serif;
     font-size: 42px;
     line-height: 48px;
+    height: 48px;
+    width: 375px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .profile__text{
@@ -66,8 +72,10 @@
     cursor: pointer;
 }
 
-.profile__add{
-    
+.profile__addPlace{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #000000;
     height: 50px;
     width: 150px;
@@ -76,9 +84,15 @@
     
 }
 
-.profile__add:hover{
+.profile__addPlace:hover{
     opacity: 60%;
     cursor: pointer;
+}
+
+.profile__addIconPlace{
+    
+    height: 22px;
+    width: 22px;
 }
 
 @media screen and (max-width:768px){
