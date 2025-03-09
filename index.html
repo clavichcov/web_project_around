@@ -9,22 +9,12 @@
         <title>Alrededor de los EE.UU.</title>
         <link rel="shortcut icon" href="./favicon.ico" />
         <link rel="stylesheet" href="./pages/index.css" />
-        
     </head>
     <body class="body">
         <div class="page">
             <header class="header">
-                <img
-                  src="./images/Vector.png"
-                  alt="Logo"
-                  class="header__logo"
-                />
-                <img
-                  src="./images/Line.png"
-                  alt="Line"
-                  class="header__line"
-                />
-                
+                <img src="./images/Vector.png" alt="Logo" class="header__logo" />
+                <img src="./images/Line.png" alt="Line" class="header__line" />
             </header> 
             <main class="content">
                 <section class="profile">
@@ -37,56 +27,51 @@
                             />
                         </div>
                         <div class="profile__info">
-                        
                             <h1 class="profile__title">Jacques Cousteau</h1>
-                            <button class="profile__edit">
-
-                            </button>
+                            <button class="profile__edit"></button>
                             <p class="profile__text">Explorador</p>
                         </div>
-                        
                     </div>
                     <button class="profile__addPlace" id="profile__addPlace">
                         <img
-                                src="./images/addPlace.png"
-                                alt="Agregar lugar"
-                                class="profile__addIconPlace"
-                            />
+                            src="./images/addPlace.png"
+                            alt="Agregar lugar"
+                            class="profile__addIconPlace"
+                        />
                     </button>
                 </section> 
                 <section class="elements">
-                    
+                    <!-- Aquí se agregarán las tarjetas dinámicamente -->
                 </section> 
-                
-                
             </main>
             <footer class="footer">
-                <p class="footer__copyright">
-                    &copy; 2024 Around The U.S.
-                  </p>
+                <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
             </footer> 
         </div>
+
+        <!-- Popup para editar perfil y añadir lugar -->
         <section class="popup">
-                   
             <div class="popup__content">
-                
-                <form class="form">
+                <form class="form" id="popupForm">
                     <h2 class="form__title" id="form__title_name"></h2>
-                    <input class="form__input form__input_name" type="text" id="form__input_name">
-                    <input class="form__input form__input_about" type="text" id="form__input_extra">
-                    <button type="button" class="form__submit" id="form__submit"></button>
-                    <div class="loader" id="loader">
-                        <div class="loader__id" id="loader__circle">
-                                                        
-                        </div>
-                    </div>
+                    <input
+                        class="form__input form__input1"
+                        type="text"
+                        id="form__input_name"
+                        required
+                    />
+                    <input
+                        class="form__input form__input2"
+                        type="text"
+                        id="form__input_extra"
+                        required
+                    />
+                    <button type="submit" class="form__submit" id="form__submit"></button>
                 </form>
-                <button class="popup__close">
-                
-                </button>
-                
+                <button class="popup__close" id="popup__close"></button>
             </div>
         </section>
-        <script src="./scripts/index.js"  defer></script>
+
+        <script src="./scripts/index.js" defer></script>
     </body>
 </html>

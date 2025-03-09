@@ -1,111 +1,106 @@
 document.addEventListener('DOMContentLoaded', () => {
     let buttonEdit = document.querySelector('.profile__edit');
     let buttonAddPlace = document.querySelector('.profile__addPlace');
-    let openPopup = document.querySelector('.popup');
-    let buttonClose = document.querySelector('.popup__close');
-    let closePopup = document.querySelector('.popup');
-    
-    let inputName = document.querySelector('.form__input_name');
-    let inputAbout = document.querySelector('.form__input_about');
+    let popup = document.querySelector('.popup');
+    let buttonClose = document.getElementById('popup__close');
+    let cardContainer = document.querySelector('.elements');
+    let inputName = document.getElementById('form__input_name');
+    let inputAbout = document.getElementById('form__input_extra');
     let textTitle = document.querySelector('.profile__title');
     let textText = document.querySelector('.profile__text');
-    let textName = textTitle.textContent;
-    let textAbout = textText.textContent;
-    let buttonSubmit = document.querySelector('.form__submit');
-    const loaderTimeout = 5000;
+    let buttonSubmit = document.getElementById('form__submit');
+    let form = document.getElementById('popupForm');
+
+    const loaderTimeout = 2000; // Tiempo de simulación de carga
+
+    // Función para habilitar o deshabilitar el botón de enviar
+    function toggleSubmitButton() {
+        if (inputName.value && inputAbout.value) {
+            buttonSubmit.disabled = false;
+            buttonSubmit.style.backgroundColor = '#000000'; // Cambia el color del botón
+        } else {
+            buttonSubmit.disabled = true;
+            buttonSubmit.style.backgroundColor = '#FFFFFF'; // Restaura el color del botón
+        }
+    }
+
+    // Escuchar cambios en los campos del formulario
+    inputName.addEventListener('input', toggleSubmitButton);
+    inputAbout.addEventListener('input', toggleSubmitButton);
+
+    function openPopupWithId(popupId, title, placeholderName, placeholderExtra, submitText, onSubmit) {
+        popup.id = popupId;
+        popup.style.display = 'flex';
+        document.getElementById("form__title_name").textContent = title;
+        document.getElementById("form__input_name").placeholder = placeholderName;
+        document.getElementById("form__input_extra").placeholder = placeholderExtra;
+        document.getElementById("form__submit").textContent = submitText;
+
+        // Reiniciar el estado del botón de enviar
+        buttonSubmit.disabled = true;
+        buttonSubmit.style.backgroundColor = '#FFFFFF';
+
+        form.removeEventListener('submit', onSubmit);
+        form.addEventListener('submit', onSubmit);
+    }
 
     function openAddProfile() {
-        if (openPopup.style.display === 'none' || openPopup.style.display === '') {
-            openPopup.style.display = 'flex';
-            document.getElementById("form__title_name").textContent="Editar Perfil";
-            document.getElementById("form__input_name").placeholder = "Nombre";
-            document.getElementById("form__input_extra").placeholder = "Acerca de mí";
-            document.getElementById("form__submit").textContent="Guardar";
-            document.getElementById("loader").style.display = "block";
-            document.getElementById("loader__circle").style.display = "none";
-            setTimeout(function() {
-                document.getElementById("loader").style.display = "none";
-                document.getElementById("loader__circle").style.display = "block";
-                inputName.value = textName;
-                inputAbout.value = textAbout;
-                buttonSubmit.style.backgroundColor = '#000000';
-            }, loaderTimeout);
-        } else {
-            openPopup.style.display = 'none';
-        }
-    
-    
+        openPopupWithId(
+            'editProfilePopup',
+            "Editar Perfil",
+            "Nombre",
+            "Acerca de mí",
+            "Guardar",
+            handleProfileFormSubmit
+        );
+
+        // Simulación de carga con setTimeout
+        setTimeout(() => {
+            inputName.value = textTitle.textContent;
+            inputAbout.value = textText.textContent;
+            toggleSubmitButton(); // Habilitar el botón si los campos están llenos
+        }, loaderTimeout);
     }
 
-    function openAddPlace(){
-        if (openPopup.style.display === 'none' || openPopup.style.display === '') {
-            openPopup.style.display = 'flex';
-            document.getElementById("form__title_name").textContent="Nuevo lugar";
-            document.getElementById("form__input_name").placeholder = "Título";
-            document.getElementById("form__input_extra").placeholder = "Enlace a la imagen";
-            document.getElementById("form__submit").textContent="Crear";
-            
-            
-        } else {
-            openPopup.style.display = 'none';
-        }
-    }
-
-    function close() {
-        if (closePopup.style.display === 'flex'){
-            closePopup.style.display = 'none';
-            inputName.value = '';
-            inputAbout.value = '';
-            buttonSubmit.style.backgroundColor = '#FFFFFF';
-        } else {
-            closePopup.style.display = 'flex';
-        }
-    
-    }
-
-    function like() {
-        let button = event.target;
-        let currentBackground = window.getComputedStyle(button).backgroundImage;
-            if (currentBackground.includes('btn-like-nr.png')) {
-                button.style.backgroundImage = 'url("./images/btn-like-ac.png")';
-            } else {
-                button.style.backgroundImage = 'url("./images/btn-like-nr.png")';
-            }
+    function openAddPlace() {
+        openPopupWithId(
+            'addPlacePopup',
+            "Nuevo lugar",
+            "Título",
+            "Enlace a la imagen",
+            "Crear",
+            addPlace
+        );
     }
 
     function handleProfileFormSubmit(evt) {
-    
         evt.preventDefault();
-        console.log(inputName.value);
-        console.log(inputAbout.value);
         textTitle.textContent = inputName.value;
         textText.textContent = inputAbout.value;
-        closePopup.style.display = 'none';
-        inputName.value = '';
-        inputAbout.value = '';
-        buttonSubmit.style.backgroundColor = '#FFFFFF'; 
+        closePopup();
     }
 
-    buttonClose.addEventListener("click" , close);
-     
-    buttonSubmit.addEventListener('click', handleProfileFormSubmit);
-    buttonEdit.addEventListener("click" , openAddProfile);
-    buttonAddPlace.addEventListener("click" , openAddPlace);
+    function addPlace(evt) {
+        evt.preventDefault();
+        const cardData = {
+            name: document.getElementById("form__input_name").value,
+            link: document.getElementById("form__input_extra").value
+        };
 
+        const card = createCard(cardData);
+        cardContainer.prepend(card); // Agrega la tarjeta al principio
+        closePopup();
+        form.reset();
+    }
 
+    function closePopup() {
+        popup.style.display = 'none';
+        inputName.value = '';
+        inputAbout.value = '';
+        buttonSubmit.style.backgroundColor = '#FFFFFF';
+    }
 
-    const initialCards = [
-        { name: "Valle de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" },
-        { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg" },
-        { name: "Montañas Calvas", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg" },
-        { name: "Latemar", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg" },
-        { name: "Parque Nacional de la Vanoise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg" },
-        { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" }
-    ];
-
-    const cardContainer = document.querySelector('.elements');
-
-    initialCards.forEach(cardData => {
+    function createCard(cardData) {
         const card = document.createElement('div');
         card.className = 'element';
 
@@ -116,6 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
         cardImage.src = cardData.link;
         cardImage.alt = `Foto de ${cardData.name}`;
         cardImage.className = 'element__image';
+
+        // Verifica si la imagen se carga correctamente
+        cardImage.onerror = () => {
+            console.error("Error al cargar la imagen:", cardData.link);
+            cardImage.src = "https://via.placeholder.com/400"; // Imagen de respaldo
+        };
 
         const cardContent = document.createElement('div');
         cardContent.className = 'element__content';
@@ -129,9 +130,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const cardTrash = document.createElement('button');
         cardTrash.className = 'element__trash';
-        
+
         const trashIcon = document.createElement('img');
-        trashIcon.className = ''
         trashIcon.src = './images/trash.png';
         trashIcon.alt = 'Eliminar';
 
@@ -142,11 +142,74 @@ document.addEventListener('DOMContentLoaded', () => {
         cardRectangle.appendChild(cardTrash);
         cardRectangle.appendChild(cardContent);
         card.appendChild(cardRectangle);
-        cardContainer.appendChild(card);
+
         cardTrash.addEventListener('click', () => {
             card.remove();
         });
+
+        cardImage.addEventListener('click', imgAction);
+
+        cardButton.addEventListener('click', like);
+
+        return card;
+    }
+
+    function like(event) {
+        let button = event.target;
+        let currentBackground = window.getComputedStyle(button).backgroundImage;
+        if (currentBackground.includes('btn-like-nr.png')) {
+            button.style.backgroundImage = 'url("./images/btn-like-ac.png")';
+        } else {
+            button.style.backgroundImage = 'url("./images/btn-like-nr.png")';
+        }
+    }
+
+    const modal = document.createElement('div');
+    modal.setAttribute('id', 'imageModal');
+    modal.setAttribute('class', 'image-modal');
+
+    const span = document.createElement('span');
+    span.setAttribute('class', 'close');
+    span.innerHTML = '&times;';
+
+    const modalImg = document.createElement('img');
+    modalImg.setAttribute('class', 'image-modal-content');
+    modalImg.setAttribute('id', 'img01');
+
+    modal.appendChild(span);
+    modal.appendChild(modalImg);
+    document.body.appendChild(modal);
+
+    function imgAction(event) {
+        modal.style.display = 'block';
+        modalImg.src = event.target.src;
+    }
+
+    span.onclick = function () {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    buttonClose.addEventListener("click", closePopup);
+    buttonEdit.addEventListener("click", openAddProfile);
+    buttonAddPlace.addEventListener("click", openAddPlace);
+
+    const initialCards = [
+        { name: "Valle de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" },
+        { name: "Lago Louise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg" },
+        { name: "Montañas Calvas", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg" },
+        { name: "Latemar", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg" },
+        { name: "Parque Nacional de la Vanoise", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg" },
+        { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" }
+    ];
+
+    initialCards.forEach(cardData => {
+        const card = createCard(cardData);
+        cardContainer.prepend(card); // Agrega las tarjetas iniciales al principio
     });
-    let buttonsLike = document.querySelectorAll('.element__button');
-    buttonsLike.forEach(button => {button.addEventListener('click', like)});
 });
