@@ -164,28 +164,33 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    const modal = document.createElement('div');
-    modal.setAttribute('id', 'imageModal');
-    modal.setAttribute('class', 'image-modal');
+    const modal = document.createElement('section');
+    modal.setAttribute('id', 'modal');
+    modal.setAttribute('class', 'modal');
 
-    const span = document.createElement('span');
-    span.setAttribute('class', 'close');
-    span.innerHTML = '&times;';
+    const container = document.createElement('div');
+    container.setAttribute('id' , 'modal__content');
+    container.setAttribute('class' , 'modal__content');
 
+    const closeImg = document.createElement('button');
+    closeImg.setAttribute('class', 'close');
+    
     const modalImg = document.createElement('img');
-    modalImg.setAttribute('class', 'image-modal-content');
+    modalImg.setAttribute('class', 'image__modal-content');
     modalImg.setAttribute('id', 'img01');
 
-    modal.appendChild(span);
-    modal.appendChild(modalImg);
+    modal.appendChild(container);
+    container.appendChild(modalImg);
+    container.appendChild(closeImg);
+    
     document.body.appendChild(modal);
 
     function imgAction(event) {
-        modal.style.display = 'block';
+        modal.style.display = 'flex';
         modalImg.src = event.target.src;
     }
 
-    span.onclick = function () {
+    closeImg.onclick = function () {
         modal.style.display = 'none';
     }
 
@@ -210,6 +215,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initialCards.forEach(cardData => {
         const card = createCard(cardData);
-        cardContainer.prepend(card); // Agrega las tarjetas iniciales al principio
+        cardContainer.prepend(card); 
     });
 });
