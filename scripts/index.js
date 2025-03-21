@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
         cardTrash.className = 'element__trash';
 
         const trashIcon = document.createElement('img');
-        trashIcon.src = './images/trash.png';
+        trashIcon.src = 'images/trash.png';
         trashIcon.alt = 'Eliminar';
 
         cardTrash.appendChild(trashIcon);
