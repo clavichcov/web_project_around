@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Verifica si la imagen se carga correctamente
         cardImage.onerror = () => {
             console.error("Error al cargar la imagen:", cardData.link);
-            cardImage.src = "https://via.placeholder.com/400"; // Imagen de respaldo
+            cardImage.src = "./images/error400.jpg"; // Imagen de respaldo
         };
 
         const cardContent = document.createElement('div');
