@@ -1,49 +1,42 @@
+
+import { enableValidation, clearSpan, toggleButtonState } from './validate.js';
+document.addEventListener('DOMContentLoaded', () => {
+  enableValidation();
+  
+});
 document.addEventListener('DOMContentLoaded', () => {
     let buttonEdit = document.querySelector('.profile__edit');
     let buttonAddPlace = document.querySelector('.profile__addPlace');
     let popup = document.querySelector('.popup');
-    let buttonClose = document.getElementById('popup__close');
+    let buttonClose = document.getElementById('popup_close');
     let cardContainer = document.querySelector('.elements');
-    let inputName = document.getElementById('form__input_name');
-    let inputAbout = document.getElementById('form__input_extra');
+    let inputName = document.getElementById('form_input_name');
+    let inputExtra = document.getElementById('form_input_extra');
     let textTitle = document.querySelector('.profile__title');
     let textText = document.querySelector('.profile__text');
-    let buttonSubmit = document.getElementById('form__submit');
-    let form = document.getElementById('popupForm');
+    let buttonSubmit = document.getElementById('form_submit');
+    let form = document.getElementById('form_popup');
+    // Tiempo de simulación de carga
+    const loaderTimeout = 2000; 
 
-    const loaderTimeout = 2000; // Tiempo de simulación de carga
-
-    // Función para habilitar o deshabilitar el botón de enviar
-    function toggleSubmitButton() {
-        if (inputName.value && inputAbout.value) {
-            buttonSubmit.disabled = false;
-            buttonSubmit.style.backgroundColor = '#000000'; // Cambia el color del botón
-        } else {
-            buttonSubmit.disabled = true;
-            buttonSubmit.style.backgroundColor = '#FFFFFF'; // Restaura el color del botón
-        }
-    }
-
-    // Escuchar cambios en los campos del formulario
-    inputName.addEventListener('input', toggleSubmitButton);
-    inputAbout.addEventListener('input', toggleSubmitButton);
-
+    
+    // Función para abrir el popup con un ID específico y configurar los campos
     function openPopupWithId(popupId, title, placeholderName, placeholderExtra, submitText, onSubmit) {
         popup.id = popupId;
         popup.style.display = 'flex';
-        document.getElementById("form__title_name").textContent = title;
-        document.getElementById("form__input_name").placeholder = placeholderName;
-        document.getElementById("form__input_extra").placeholder = placeholderExtra;
-        document.getElementById("form__submit").textContent = submitText;
-
-        // Reiniciar el estado del botón de enviar
-        buttonSubmit.disabled = true;
-        buttonSubmit.style.backgroundColor = '#FFFFFF';
-
+        document.getElementById("form_title_name").textContent = title;
+        document.getElementById("form_input_name").placeholder = placeholderName;
+        document.getElementById("form_input_extra").placeholder = placeholderExtra;
+        document.getElementById("form_submit").textContent = submitText;
+        const inputList = Array.from(form.querySelectorAll(".form__input"));
+        const buttonElement = form.querySelector(".form__submit");
+        toggleButtonState(inputList, buttonElement);
         form.removeEventListener('submit', onSubmit);
         form.addEventListener('submit', onSubmit);
     }
 
+    /* Función para abrir el popup de edición de perfil
+       y simular la carga de datos*/
     function openAddProfile() {
         openPopupWithId(
             'editProfilePopup',
@@ -53,15 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
             "Guardar",
             handleProfileFormSubmit
         );
-
+        //Configurar input__name con un minimo y maximo de caracteres permitidos
+        const inputName = document.getElementById("form_input_name");
+        inputName.minLength = 2;  
+        inputName.maxLength = 40;
+        //Configurar input__extra como campo de texto y asignar minimo y maximo de caracteres permitidos
+        
+        const inputExtra = document.getElementById("form_input_extra");
+        inputExtra.type = "text";
+        inputExtra.minLength = 2;  
+        inputExtra.maxLength = 200;
+        if(inputExtra.classList.contains("form__input_url")){
+            inputExtra.classList.remove("form__input_url");
+            inputExtra.removeAttribute('pattern');
+            inputExtra.removeAttribute('title');
+            inputExtra.type = 'text';
+        }
+        inputExtra.classList.add("form__input_text")
         // Simulación de carga con setTimeout
         setTimeout(() => {
             inputName.value = textTitle.textContent;
-            inputAbout.value = textText.textContent;
-            toggleSubmitButton(); // Habilitar el botón si los campos están llenos
+            inputExtra.value = textText.textContent;
+            const inputList = [inputName, inputExtra];
+            const buttonElement = form.querySelector(".form__submit");
+            toggleButtonState(inputList, buttonElement);
+            
         }, loaderTimeout);
     }
 
+    // Función para abrir el popup de nuevo lugar
     function openAddPlace() {
         openPopupWithId(
             'addPlacePopup',
@@ -71,35 +84,75 @@ document.addEventListener('DOMContentLoaded', () => {
             "Crear",
             addPlace
         );
+        //Configurar input__name con un minimo y maximo de caracteres permitidos
+        const inputName = document.getElementById("form_input_name");
+        inputName.minLength = 2;  
+        inputName.maxLength = 40;
+        // Configurar como campo como url
+        const urlInput = document.getElementById("form_input_extra");
+        if(inputExtra.classList.contains("form__input_text")){
+            inputExtra.classList.remove("form__input_text");
+        }
+        inputExtra.classList.add("form__input_url");
+        urlInput.type = "url";
+        urlInput.pattern = "https://.*";  
+        urlInput.title = "Por favor ingresa una URL válida (debe comenzar con https://)";
+        
     }
 
+    // Función para manejar el envío del formulario de perfil
+    // y actualizar el texto del perfil
+    // y cerrar el popup
     function handleProfileFormSubmit(evt) {
         evt.preventDefault();
         textTitle.textContent = inputName.value;
-        textText.textContent = inputAbout.value;
+        textText.textContent = inputExtra.value;
         closePopup();
     }
 
+    // Función para manejar el envío del formulario de nuevo lugar
+    // y crear una nueva tarjeta
+    // y cerrar el popup
     function addPlace(evt) {
         evt.preventDefault();
-        const cardData = {
-            name: document.getElementById("form__input_name").value,
-            link: document.getElementById("form__input_extra").value
-        };
-
-        const card = createCard(cardData);
-        cardContainer.prepend(card); // Agrega la tarjeta al principio
-        closePopup();
-        form.reset();
+        if(inputExtra.classList.contains("form__input_url")){
+            const cardData = {
+                name: document.getElementById("form_input_name").value,
+                link: document.querySelector(".form__input_url").value
+            };
+            const card = createCard(cardData);
+            cardContainer.prepend(card); 
+            closePopup();
+        }
+        
     }
 
+    // Función para cerrar el popup y limpiar los campos
+    // y restaurar el color del botón de enviar
     function closePopup() {
+        form.reset();
         popup.style.display = 'none';
         inputName.value = '';
-        inputAbout.value = '';
+        inputExtra.value = '';        
         buttonSubmit.style.backgroundColor = '#FFFFFF';
+                
+        /*if(inputExtra.classList.contains("form__input_url")){
+            inputExtra.classList.remove("form__input_url");
+            inputExtra.removeAttribute('pattern');
+            inputExtra.removeAttribute('title');
+            inputExtra.type = 'text';
+        }*/
+        /*if(inputExtra.classList.contains("form__input_text")){
+            inputExtra.classList.remove("form__input_text");
+        }*/
+        
+        clearSpan(form, inputName);
+        clearSpan(form, inputExtra);
     }
 
+    // Función para crear una tarjeta
+    // y agregarle eventos de clic para eliminar y mostrar la imagen
+    // y mostrar la imagen en un modal
     function createCard(cardData) {
         const card = document.createElement('div');
         card.className = 'element';
@@ -153,7 +206,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return card;
     }
-
+    // Función para cambiar el estado del botón de "me gusta"
+    // y cambiar la imagen del botón
+    // y simular la carga de datos
     function like(event) {
         let button = event.target;
         let currentBackground = window.getComputedStyle(button).backgroundImage;
@@ -184,7 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
     container.appendChild(closeImg);
     
     document.body.appendChild(modal);
-
+    // Agregar el evento de clic al botón de cerrar
+    // y simular la carga de datos
     function imgAction(event) {
         modal.style.display = 'flex';
         modalImg.src = event.target.src;
@@ -200,9 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    buttonClose.addEventListener("click", closePopup);
-    buttonEdit.addEventListener("click", openAddProfile);
-    buttonAddPlace.addEventListener("click", openAddPlace);
+    
 
     const initialCards = [
         { name: "Valle de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" },
@@ -217,4 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const card = createCard(cardData);
         cardContainer.prepend(card); 
     });
+
+    buttonClose.addEventListener("click", closePopup);
+    buttonEdit.addEventListener("click", openAddProfile);
+    buttonAddPlace.addEventListener("click", openAddPlace);
 });
+
