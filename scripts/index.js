@@ -105,9 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // y cerrar el popup
     function handleProfileFormSubmit(evt) {
         evt.preventDefault();
-        textTitle.textContent = inputName.value;
-        textText.textContent = inputExtra.value;
-        closePopup();
+        if(inputExtra.classList.contains("form__input_text")){
+            textTitle.textContent = document.querySelector(".form__input_name").value;
+            textText.textContent = document.querySelector(".form__input_text").value;
+            closePopup();
+        }
     }
 
     // Función para manejar el envío del formulario de nuevo lugar
