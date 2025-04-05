@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleButtonState(inputList, buttonElement);
         form.removeEventListener('submit', onSubmit);
         form.addEventListener('submit', onSubmit);
+        document.addEventListener('keydown', handleEscapeKey);
     }
 
     /* Función para abrir el popup de edición de perfil
@@ -129,6 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
         
     }
 
+    function handleEscapeKey(evt) {
+        if (evt.key === 'Escape') {
+          closePopup();
+        }
+      }
     // Función para cerrar el popup y limpiar los campos
     // y restaurar el color del botón de enviar
     function closePopup() {
@@ -137,19 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
         inputName.value = '';
         inputExtra.value = '';        
         buttonSubmit.style.backgroundColor = '#FFFFFF';
-                
-        /*if(inputExtra.classList.contains("form__input_url")){
-            inputExtra.classList.remove("form__input_url");
-            inputExtra.removeAttribute('pattern');
-            inputExtra.removeAttribute('title');
-            inputExtra.type = 'text';
-        }*/
-        /*if(inputExtra.classList.contains("form__input_text")){
-            inputExtra.classList.remove("form__input_text");
-        }*/
         
         clearSpan(form, inputName);
         clearSpan(form, inputExtra);
+        document.removeEventListener('keydown', handleEscapeKey);
     }
 
     // Función para crear una tarjeta
@@ -255,6 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = 'none';
+        }
+        if (event.target == popup) {
+            popup.style.display = 'none';
         }
     }
 
