@@ -199,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.remove();
         });
 
-        cardImage.addEventListener('click', imgAction);
+        cardImage.addEventListener('click', openImagePopup);
 
         cardButton.addEventListener('click', like);
 
@@ -223,26 +223,33 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('class', 'modal');
 
     const container = document.createElement('div');
-    container.setAttribute('id' , 'modal__content');
+    container.setAttribute('id' , 'modal_content');
     container.setAttribute('class' , 'modal__content');
 
     const closeImg = document.createElement('button');
     closeImg.setAttribute('class', 'close');
+
+    const titleImage = document.createElement('h2');
+    titleImage.setAttribute('class', 'modal__image_title');
+    titleImage.setAttribute('id', 'modal_image_title');
     
     const modalImg = document.createElement('img');
     modalImg.setAttribute('class', 'image__modal-content');
-    modalImg.setAttribute('id', 'img01');
+    modalImg.setAttribute('id', 'image_modal-content');
 
     modal.appendChild(container);
     container.appendChild(modalImg);
+    container.appendChild(titleImage);
     container.appendChild(closeImg);
     
     document.body.appendChild(modal);
     // Agregar el evento de clic al botón de cerrar
     // y simular la carga de datos
-    function imgAction(event) {
+    function openImagePopup(event) {
         modal.style.display = 'flex';
         modalImg.src = event.target.src;
+        const cardText = event.target.closest('.element').querySelector('.element__text');
+        titleImage.textContent = cardText.textContent;
     }
 
     closeImg.onclick = function () {

@@ -62,10 +62,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     }
   };
   
-  /*const toggleButtonState = (inputList, buttonElement) => {
-    const hasError = inputList.some(input => !input.validity.valid);
-    buttonElement.disabled = hasError;
-  };*/
+  
 
   const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(".form__input"));
@@ -86,14 +83,9 @@ const showInputError = (formElement, inputElement, errorMessage) => {
         evt.preventDefault();
       });
       setEventListeners(formElement);
-      /*const fieldsetList = Array.from(formElement.querySelectorAll(".form__set"));
-  
-      fieldsetList.forEach((fieldset) => {
-        setEventListeners(fieldset);
-      });*/
+      
     });
   };
   
-  //enableValidation();
-  //document.addEventListener('DOMContentLoaded', enableValidation);
+  
   
