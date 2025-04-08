@@ -11,6 +11,10 @@
     z-index: 1000;
 }
 
+.popup_opened {
+    display: flex; 
+}
+
 .popup__close {
        
     padding: 0;

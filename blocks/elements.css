@@ -1,6 +1,5 @@
 .elements{
     display: grid;
-    
     color: #000000;
     margin-top: 49px;
     grid-template-columns: auto auto auto;
@@ -28,6 +27,7 @@
 }
 
 .element__content{
+    background-color: #FFFFFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -69,6 +69,7 @@
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 1000;
 }
 
 .element__trash:hover{
@@ -94,17 +95,10 @@
 .modal__content {
     position: relative;
     display: flex;
-    
-    max-width: 70vw;
-    max-height: 70vh;
+    max-width: 880px;
+    max-height: 80vh;
     margin: auto;
     flex-direction: column;
-    
-    /*flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    max-width: 90%;
-    max-height: 90%;*/
     
 }
 
@@ -125,18 +119,15 @@
     padding: 10px;
     /*background-color: rgba(0, 0, 0, 0.7);*/
     width: 100%;
-    
     border-radius: 0 0 10px 10px;
     
 }
 
 .close {
     position: absolute;
-
     align-self: flex-start;
     flex-direction: row-reverse;
     padding: 0;
-    right: 10px;
     width: 40px;
     height: 40px;
     background-size: cover;
@@ -146,7 +137,6 @@
     cursor: pointer;
     top: 10px;
     right: 10px;
-    cursor: pointer;
     z-index: 1001;
 }
 
