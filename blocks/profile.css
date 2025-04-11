@@ -28,6 +28,7 @@
 
 .profile__info{
     display: flex;
+    position: relative;
     flex-direction: row;
     flex-wrap: wrap;
     height: 77px;
@@ -48,11 +49,45 @@
     text-overflow: ellipsis;
 }
 
+profile__text-wrapper{
+    position: relative;
+    max-width: 420px;
+    margin: 16px 0 0;
+    align-self: flex-end;
+}
+
 .profile__text{
+    max-width: 420px;
+    max-height: 65px;
     align-self: flex-end;
     margin: 16px 0 0;
-    
+    overflow: hidden;
+        
 }
+
+.profile__text.truncated {
+    position: relative;
+    padding-right: 20px; 
+  }
+  
+  .profile__text.truncated::after {
+    content: "▼";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .profile__text.expanded {
+    white-space: normal;
+    text-overflow: clip;
+  }
+  
+  .profile__text-full {
+    display: none;
+    white-space: normal;
+  }
 
 .profile__edit{
     margin-left: 18px;
@@ -112,6 +147,10 @@
         
     }
 
+    .profile__text-wrapper {
+        max-width: 100%;
+      }
+
     .profile__add{
         margin-top: 20px;
         align-self: center;
@@ -151,6 +190,11 @@
         height: 18px;
         width: 18px;
    }
+
+   .profile__text-wrapper {
+    max-width: 282px;
+   }
+
    .profile__text{
         font-size: 14px;
         margin: 14px 0 0;

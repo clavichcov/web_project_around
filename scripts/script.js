@@ -1,5 +1,5 @@
 import { Card } from './card.js';
-import { handleEditProfileClick, handleAddPlaceClick, clickClose } from './utils.js';
+import { handleEditProfileClick, handleAddPlaceClick, clickPopupClose, handleEscapeKeyPopupClose, handleOutsideClick} from './utils.js';
 document.addEventListener('DOMContentLoaded', () => {
     const cardsItems = [
         { name: "Valle de Yosemite", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg" },
@@ -12,12 +12,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardElements = document.querySelector(".elements");
     const editButton = document.querySelector('.profile__edit');
     const addPlaceButton = document.querySelector('.profile__addPlace');
-    const closePopup = document.querySelector('.popup__close');
+    const popupClose = document.querySelector('.popup__close');
+    
+    
     cardsItems.forEach((item) => {
         const card = new Card(item.name, item.link, '.default-card');
         cardElements.appendChild(card.getView());
     });
+
+    
+
+    
     editButton.addEventListener('click', handleEditProfileClick);
     addPlaceButton.addEventListener('click', handleAddPlaceClick);
-    closePopup.addEventListener('click', clickClose);
+    popupClose.addEventListener('click', clickPopupClose);
+    document.addEventListener('keydown', handleEscapeKeyPopupClose);
+    document.addEventListener('click', handleOutsideClick);
+    
+    
+    
+    
 });

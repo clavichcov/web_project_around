@@ -29,7 +29,10 @@
                         <div class="profile__info">
                             <h1 class="profile__title">Jacques Cousteau</h1>
                             <button class="profile__edit"></button>
-                            <p class="profile__text">Explorador</p>
+                            <div class="profile__text-wrapper">
+                                <p class="profile__text">Explorador</p>
+                                <div class="profile__text-full" style="display: none;"></div>
+                            </div>
                         </div>
                     </div>
                     <button class="profile__addPlace" id="profile__addPlace">
@@ -72,10 +75,18 @@
                         />
                         <span class="form__input_extra-error form_input_extra-error" id="form_input_extra-error"></span>
                     </div>
-                    <button type="submit" class="form__submit" id="form_submit"></button>
+                    <button type="submit" class="form__button_submit" id="form_button_submit"></button>
                 </form>
                 <button class="popup__close" id="popup_close"></button>
             </div>
+        </section>
+        <section id="modalid" class="modal">
+            <div id="modal_content" class="modal__content">
+                <img class="modal__image_content" id="modal_image_content" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
+                <h2 class="modal__image_title" id="modal_image_title">Lago di Braies</h2>
+                <button class="modal__button_close" id="modal_button_close"></button>
+            </div>
+
         </section>
         <template class="default-card"><!-- Template -->
             <article class="card">
@@ -88,7 +99,7 @@
                         </button>
                         <div class="element__content">
                             <p class="element__text">Lago di Braies</p>
-                            <button class="element__button"></button>
+                            <button class="element__button_like "></button>
                         </div>
                     </div>
                 </div> 

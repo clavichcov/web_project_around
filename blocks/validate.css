@@ -2,7 +2,7 @@
     border-bottom: 1px solid #FF0000;
   }
   
-  .form__input-error_active {
+  .form__input_error_active {
     
     left: 0;
     color: #FF0000;
@@ -11,8 +11,14 @@
     display: block;
     margin-top: 6px;
   }
-  
-  .button_inactive {
+
+  .form__button_active{
+    background-color: #000000;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .fom__button_inactive {
     opacity: 0.5;
     cursor: not-allowed;
     background-color: #FFF;
