@@ -87,7 +87,7 @@
     border-bottom: none;
 }
 
-.form__button--submit {
+.form__submit-button {
     display: block;
     margin-top: 48px;
     padding: 0px;
@@ -149,7 +149,7 @@
         width: 238px;
     }
 
-    .form__button--submit {
+    .form__submit-button {
         width: 238px;
     }
 }

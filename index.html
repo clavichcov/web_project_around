@@ -31,7 +31,7 @@
                             <button class="profile__edit"></button>
                             <div class="profile__text-wrapper">
                                 <p class="profile__text">Explorador</p>
-                                <div class="profile__text--full" style="display: none;"></div>
+                                <div class="profile__text--hidden" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
@@ -56,10 +56,10 @@
         <section class="popup">
             <div class="popup__content">
                 <form class="form" id="form-popup" novalidate> 
-                    <h2 class="form__title form__title--name" id="form-title-name"></h2>
+                    <h2 class="form__title" id="form-title-name"></h2>
                     <div class="form__wrapper">
                         <input
-                            class="form__input form__input--name"
+                            class="form__input form__input-name"
                             type="text"
                             id="form-input-name"
                             required
@@ -68,14 +68,14 @@
                     </div>
                     <div class="form__wrapper">
                         <input
-                            class="form__input form__input--extra"
+                            class="form__input form__input-extra"
                             type="text"
-                            id="form__input--extra"
+                            id="form__input-extra"
                             required
                         />
-                        <span class="form__input--extra-error" id="form__input--extra-error"></span>
+                        <span class="form__error" id="form__input-extra-error"></span>
                     </div>
-                    <button type="submit" class="form__button form__button--submit" id="form-button-submit"></button>
+                    <button type="submit" class="form__submit form__submit-button" id="form-button-submit"></button>
                 </form>
                 <button class="popup__close" id="popup_close"></button>
             </div>

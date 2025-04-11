@@ -2,17 +2,17 @@ import  {Card} from './card.js';
 import { FormValidator } from './FormValidator.js';
 const form = document.querySelector('.form');
 const popup = document.querySelector('.popup');
-const inputName = document.querySelector('.form__input--name');
-const inputExtra = document.querySelector('.form__input--extra');
-const buttonElement = form.querySelector(".form__button--submit");
+const inputName = document.querySelector('.form__input-name');
+const inputExtra = document.querySelector('.form__input-extra');
+const buttonElement = form.querySelector(".form__submit-button");
 const cardTrash = document.querySelector('.card__delete-button');
         
 
 const handleEditProfileClick = () => {
     
-    document.querySelector('.form__title--name').textContent = 'Editar perfil';
-    document.querySelector('.form__input--name').placeholder = 'Nombre';
-    document.querySelector(".form__button--submit").textContent = 'Guardar';
+    document.querySelector('.form__title').textContent = 'Editar perfil';
+    document.querySelector('.form__input-name').placeholder = 'Nombre';
+    document.querySelector(".form__submit-button").textContent = 'Guardar';
     inputExtra.placeholder = 'Acerca de mí';
     inputExtra.type = 'text';    
     popup.classList.add('popup__opened');
@@ -46,8 +46,8 @@ const handleEditProfileClick = () => {
 }
 const handleAddPlaceClick = () => {
     
-    document.querySelector('.form__input--name').placeholder = 'Título';
-    document.querySelector(".form__button--submit").textContent = 'Crear';
+    document.querySelector('.form__input').placeholder = 'Título';
+    document.querySelector(".form__submit-button").textContent = 'Crear';
     inputExtra.placeholder = 'Enlace a la imagen';
     inputExtra.type = 'url'; 
     popup.classList.add('popup__opened');
