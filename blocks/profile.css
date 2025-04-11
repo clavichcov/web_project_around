@@ -144,16 +144,18 @@ profile__text-wrapper{
 
     .profile__info{
         margin: 0;
-        
+        height: 142px;
     }
 
     .profile__text-wrapper {
         max-width: 100%;
-      }
+    }
 
-    .profile__add{
+    .profile__addPlace{
         margin-top: 20px;
         align-self: center;
+        height: 50px;
+        width: 282px;
     }
 
 }
@@ -176,17 +178,18 @@ profile__text-wrapper{
    .profile__info{
         margin: 30px 0 0 0;
         width: 282px;
+        height: 142px;
         justify-content: center;
    }
 
    .profile__title{
         font-size: 22px;
         line-height: normal;
+        max-width: 264px;
    }
 
    .profile__edit{
-        margin-left: 10px;
-        margin-top: 4px;
+        margin: 0;
         height: 18px;
         width: 18px;
    }
@@ -198,12 +201,15 @@ profile__text-wrapper{
    .profile__text{
         font-size: 14px;
         margin: 14px 0 0;
+        max-width: 282px;
     
     }
     
-    .profile__add{
+    .profile__addPlace{
         margin: 36px 0 0 0;
         height: 50px;
         width: 282px;
+        max-height: 65px;
+        overflow: hidden;
     }
 }

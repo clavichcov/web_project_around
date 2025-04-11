@@ -11,7 +11,7 @@
     z-index: 1000;
 }
 
-.popup_opened {
+.popup__opened {
     display: grid; 
 }
 
@@ -71,13 +71,23 @@
     border-bottom: 2px solid #C4C4C4;
 }
 
-.form__input-wrapper {
+.form__wrapper {
+    margin: 0;
     display: flex;
     flex-direction: column;
     min-height: 40px;
+    
 }
 
-.form__button_submit {
+.form__input_name-error {
+    border-bottom: none;
+}
+
+.form__input_extra-error {
+    border-bottom: none;
+}
+
+.form__button--submit {
     display: block;
     margin-top: 48px;
     padding: 0px;
@@ -139,7 +149,7 @@
         width: 238px;
     }
 
-    .form__submit {
+    .form__button--submit {
         width: 238px;
     }
 }

@@ -7,33 +7,33 @@
     gap: 20px 17px;
 }
 
-.element{
+.card__container{
     height: 361px;
     width: 282px;
     border-radius: 10px;
     overflow: hidden;
 }
 
-.element__rectangle{
+.card__header{
     position: relative;
     height: 100%;
     width: 100%;
     background-color: #FFFFFF;
 }
 
-.element__image{
+.card__image{
     height: 282px;
     width: 282px;
 }
 
-.element__content{
+.card__footer{
     background-color: #FFFFFF;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.element__text{
+.card__title{
     margin-left: 21px;
     max-width: 246px;
     font-family: 'Inter Black', Inter,  sans-serif;
@@ -44,7 +44,7 @@
     overflow: hidden;
 }
 
-.element__button_like{
+.card__like-button{
     height: 19px;
     width: 21px;
     margin-right: 18px;
@@ -55,16 +55,16 @@
     border: none;
 }
 
-.element__button_like:hover{
+.card__like-button:hover{
     opacity: 60%;
     cursor: pointer;
 }
 
-.element__button_like-active{
+.card__like-button-active{
     background-image: url(../images/btn-like-ac.png);
 }
 
-.element__trash{
+.card__delete-button{
     height: 19px;
     width: 18px;
     top: 18px;
@@ -76,7 +76,7 @@
     z-index: 1000;
 }
 
-.element__trash:hover{
+.card__delete-button:hover{
     opacity: 60%;
     
 }

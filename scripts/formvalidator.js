@@ -7,16 +7,17 @@ export class FormValidator {
     }
 
     _showInputError(inputElement, errorMessage) {
-        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.add("form__input_type_error");
+        console.log(`${inputElement.id}-error`);
+        const errorElement = document.getElementById(`${inputElement.id}-error`);
+        inputElement.classList.add("form__input--type-error");
         errorElement.textContent = errorMessage;
-        errorElement.classList.add("form__input_error_active");
+        errorElement.classList.add("form__error--active");
     }
 
     _hideInputError(inputElement) {
-        const errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
-        inputElement.classList.remove("form__input_type_error");
-        errorElement.classList.remove("form__input_error_active");
+        const errorElement = document.getElementById(`${inputElement.id}-error`);
+        inputElement.classList.remove("form__input--type-error");
+        errorElement.classList.remove("form__error--active");
         errorElement.textContent = '';
     }
 
@@ -25,8 +26,8 @@ export class FormValidator {
         if (errorElement) {
             errorElement.textContent = "";
         }
-        inputElement.classList.remove("form__input_type_error");
-        errorElement.classList.remove("form__input_error_active");
+        inputElement.classList.remove(`${inputElement.id}-error`);
+        errorElement.classList.remove(`${inputElement.id}-error-active`);
     }
 
     _checkInputValidity(inputElement) {
@@ -56,12 +57,12 @@ export class FormValidator {
 
     _toggleButtonState() {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add("form__button_inactive");
-            this._buttonElement.classList.remove("form__button_active");
+            this._buttonElement.classList.add("form__button--submit-inactive");
+            this._buttonElement.classList.remove("form__button--submit-active");
             this._buttonElement.disabled = true;
           } else {
-            this._buttonElement.classList.remove("form__button_inactive");
-            this._buttonElement.classList.add("form__button_active");
+            this._buttonElement.classList.remove("form__button--submit-inactive");
+            this._buttonElement.classList.add("form__button--submit-active");
             this._buttonElement.disabled = false;
             
           }

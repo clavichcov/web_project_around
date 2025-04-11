@@ -2,22 +2,20 @@ import  {Card} from './card.js';
 import { FormValidator } from './FormValidator.js';
 const form = document.querySelector('.form');
 const popup = document.querySelector('.popup');
-const inputName = document.getElementById('form_input_name');
-const inputExtra = document.querySelector('.form__input_extra');
-const buttonElement = form.querySelector(".form__button_submit");
-const cardTrash = document.querySelector('.element__trash');
+const inputName = document.querySelector('.form__input--name');
+const inputExtra = document.querySelector('.form__input--extra');
+const buttonElement = form.querySelector(".form__button--submit");
+const cardTrash = document.querySelector('.card__delete-button');
         
 
 const handleEditProfileClick = () => {
-    const popup = document.querySelector('.popup');
-    const inputName = document.getElementById('form_input_name');
-    const extraInput = document.querySelector('.form__input_extra');
-    document.getElementById('form_title_name').textContent = 'Editar perfil';
-    document.getElementById('form_input_name').placeholder = 'Nombre';
-    document.getElementById("form_button_submit").textContent = 'Guardar';
-    extraInput.placeholder = 'Acerca de mí';
-    extraInput.type = 'text';    
-    popup.classList.add('popup_opened');
+    
+    document.querySelector('.form__title--name').textContent = 'Editar perfil';
+    document.querySelector('.form__input--name').placeholder = 'Nombre';
+    document.querySelector(".form__button--submit").textContent = 'Guardar';
+    inputExtra.placeholder = 'Acerca de mí';
+    inputExtra.type = 'text';    
+    popup.classList.add('popup__opened');
     document.addEventListener('keydown', handleEscapeKeyPopupClose);
     const textTitle = document.querySelector('.profile__title');
     const textText = document.querySelector('.profile__text');
@@ -47,13 +45,12 @@ const handleEditProfileClick = () => {
     
 }
 const handleAddPlaceClick = () => {
-    const popup = document.querySelector('.popup');
-    const extraInput = document.querySelector('.form__input_extra');
-    document.getElementById('form_input_name').placeholder = 'Título';
-    document.getElementById("form_button_submit").textContent = 'Crear';
-    extraInput.placeholder = 'Enlace a la imagen';
-    extraInput.type = 'url'; 
-    popup.classList.add('popup_opened');
+    
+    document.querySelector('.form__input--name').placeholder = 'Título';
+    document.querySelector(".form__button--submit").textContent = 'Crear';
+    inputExtra.placeholder = 'Enlace a la imagen';
+    inputExtra.type = 'url'; 
+    popup.classList.add('popup__opened');
     document.addEventListener('keydown', handleEscapeKeyPopupClose);
     FormValidator;
     const validatorProfile = new FormValidator(
@@ -67,7 +64,7 @@ const handleAddPlaceClick = () => {
 
 const popupClose = () => {
         form.reset();
-        popup.classList.remove('popup_opened');
+        popup.classList.remove('popup__opened');
         inputName.value = '';
         inputExtra.value = '';
         document.removeEventListener('keydown', handleEscapeKeyPopupClose);
@@ -95,7 +92,7 @@ form.addEventListener ('submit', (event) => {
         profileText.textContent = inputExtra.value;
         popupClose();
     } else if (inputExtra.type === "url") {
-        const card = new Card(inputName.value, inputExtra.value, '.default-card');
+        const card = new Card(inputName.value, inputExtra.value, '.card');
         const cardElements = document.querySelector(".elements");
         cardElements.prepend(card.getView());
         popupClose();

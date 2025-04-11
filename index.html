@@ -31,7 +31,7 @@
                             <button class="profile__edit"></button>
                             <div class="profile__text-wrapper">
                                 <p class="profile__text">Explorador</p>
-                                <div class="profile__text-full" style="display: none;"></div>
+                                <div class="profile__text--full" style="display: none;"></div>
                             </div>
                         </div>
                     </div>
@@ -55,51 +55,51 @@
         <!-- Popup para editar perfil y añadir lugar -->
         <section class="popup">
             <div class="popup__content">
-                <form class="form" id="form_popup" novalidate> 
-                    <h2 class="form__title form__title_name" id="form_title_name"></h2>
-                    <div class="form__input_wrapper">
+                <form class="form" id="form-popup" novalidate> 
+                    <h2 class="form__title form__title--name" id="form-title-name"></h2>
+                    <div class="form__wrapper">
                         <input
-                            class="form__input form__input_name"
+                            class="form__input form__input--name"
                             type="text"
-                            id="form_input_name"
+                            id="form-input-name"
                             required
                         />
-                        <span class="form__input form__input_name-error form_input_name-error" id="form_input_name-error"></span>
+                        <span class="form__error" id="form-input-name-error"></span>
                     </div>
-                    <div class="form__input_wrapper">
+                    <div class="form__wrapper">
                         <input
-                            class="form__input form__input_extra"
+                            class="form__input form__input--extra"
                             type="text"
-                            id="form_input_extra"
+                            id="form__input--extra"
                             required
                         />
-                        <span class="form__input form__input_extra-error form_input_extra-error" id="form_input_extra-error"></span>
+                        <span class="form__input--extra-error" id="form__input--extra-error"></span>
                     </div>
-                    <button type="submit" class="form__button form__button_submit" id="form_button_submit"></button>
+                    <button type="submit" class="form__button form__button--submit" id="form-button-submit"></button>
                 </form>
                 <button class="popup__close" id="popup_close"></button>
             </div>
         </section>
-        <section id="modalid" class="modal">
-            <div id="modal_content" class="modal__content">
-                <img class="modal__image modal__image_content" id="modal_image_content" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
-                <h2 class="modal__image modal__image_title" id="modal_image_title">Lago di Braies</h2>
-                <button class="modal__image modal__button_close" id="modal_button_close"></button>
+        <section class="modal">
+            <div class="modal__container">
+                <img class="modal__image" id="modal-image" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
+                <h2 class="modal__title" id="modal-title">Lago di Braies</h2>
+                <button class="modal__close-button" id="modal-close-button"></button>
             </div>
 
         </section>
-        <template class="default-card"><!-- Template -->
+        <template id="card-template"><!-- Template -->
             <article class="card">
-                <div class="element">
-                    <div class="element__rectangle">
+                <div class="card__container">
+                    <div class="card__header">
                         <img src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" 
-                        alt="Foto de Lago di Braies" class="element__image">
-                        <button class="element__trash"><img src="./images/Trash.png" alt="Eliminar">
+                        alt="Foto de Lago di Braies" class="card__image">
+                        <button class="card__delete-button"><img src="./images/Trash.png" alt="Eliminar">
                             
                         </button>
-                        <div class="element__content">
-                            <p class="element__text">Lago di Braies</p>
-                            <button class="element__button_like "></button>
+                        <div class="card__footer">
+                            <p class="card__title">Lago di Braies</p>
+                            <button class="card__like-button "></button>
                         </div>
                     </div>
                 </div> 

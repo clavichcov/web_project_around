@@ -1,8 +1,8 @@
-.form__input_type_error {
+.form__input--type-error {
     border-bottom: 1px solid #FF0000;
   }
   
-  .form__input_error_active {
+  .form__error--active {
     
     left: 0;
     color: #FF0000;
@@ -12,13 +12,13 @@
     margin-top: 6px;
   }
 
-  .form__button_active{
+  .form__button--submit-active{
     background-color: #000000;
     color: #FFFFFF;
     cursor: pointer;
   }
 
-  .fom__button_inactive {
+  .form__button--submit-inactive {
     opacity: 0.5;
     cursor: not-allowed;
     background-color: #FFF;

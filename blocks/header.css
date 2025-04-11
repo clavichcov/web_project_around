@@ -4,11 +4,6 @@
     width: 880px;
 }
 
-.header__title{
-    height: 33px;
-    width: 173px;
-}
-
 .header__line{
     margin-top: 41px;
 }
@@ -26,8 +21,6 @@
     }
 
 }
-
-
 
 @media screen and (max-width:320px){
 

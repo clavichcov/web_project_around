@@ -10,20 +10,20 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: "Lago di Braies", link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" }
     ];
     const cardElements = document.querySelector(".elements");
-    const editButton = document.querySelector('.profile__edit');
+    const editProfileButton = document.querySelector('.profile__edit');
     const addPlaceButton = document.querySelector('.profile__addPlace');
     const popupClose = document.querySelector('.popup__close');
     
     
     cardsItems.forEach((item) => {
-        const card = new Card(item.name, item.link, '.default-card');
+        const card = new Card(item.name, item.link, '.card');
         cardElements.appendChild(card.getView());
     });
 
     
 
     
-    editButton.addEventListener('click', handleEditProfileClick);
+    editProfileButton.addEventListener('click', handleEditProfileClick);
     addPlaceButton.addEventListener('click', handleAddPlaceClick);
     popupClose.addEventListener('click', clickPopupClose);
     document.addEventListener('keydown', handleEscapeKeyPopupClose);
