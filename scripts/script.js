@@ -14,14 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const addPlaceButton = document.querySelector('.profile__addPlace');
     const popupClose = document.querySelector('.popup__close');
     
-    
-    cardsItems.forEach((item) => {
+    cardsItems.reverse().forEach((item) => {
         const card = new Card(item.name, item.link, '.card');
         cardElements.appendChild(card.getView());
     });
-
-    
-
     
     editProfileButton.addEventListener('click', handleEditProfileClick);
     addPlaceButton.addEventListener('click', handleAddPlaceClick);
