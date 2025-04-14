@@ -53,7 +53,7 @@
         </div>
 
         <!-- Popup para editar perfil y añadir lugar -->
-        <section class="popup">
+        <section class="popup" id="popup-edit">
             <div class="popup__content">
                 <form class="form" id="form-popup" novalidate> 
                     <h2 class="form__title" id="form-title-name"></h2>
@@ -70,21 +70,21 @@
                         <input
                             class="form__input form__input-extra"
                             type="text"
-                            id="form__input-extra"
+                            id="form-input-extra"
                             required
                         />
                         <span class="form__error" id="form__input-extra-error"></span>
                     </div>
                     <button type="submit" class="form__submit form__submit-button" id="form-button-submit"></button>
                 </form>
-                <button class="popup__close" id="popup_close"></button>
+                <button class="popup__close" id="popup-close"></button>
             </div>
         </section>
-        <section class="modal">
-            <div class="modal__container">
-                <img class="modal__image" id="modal-image" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
-                <h2 class="modal__title" id="modal-title">Lago di Braies</h2>
-                <button class="modal__close-button" id="modal-close-button"></button>
+        <section class="popup" id="image-popup">
+            <div class="popup__container">
+                <img class="popup__image" id="modal-image" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
+                <h2 class="popup__title" id="modal-title">Lago di Braies</h2>
+                <button class="popup__close-button" id="popup-close-button"></button>
             </div>
 
         </section>
@@ -106,6 +106,6 @@
             </article>
         </template><!-- Template -->
         
-        <script type="module" src="./scripts/script.js"></script>
+        <script type="module" src="./pages/script.js"></script>
     </body>
 </html>

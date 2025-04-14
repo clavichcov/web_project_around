@@ -1,11 +1,6 @@
-import  {Card} from './card.js';
-import { FormValidator } from './FormValidator.js';
-const form = document.querySelector('.form');
-const popup = document.querySelector('.popup');
-const inputName = document.querySelector('.form__input-name');
-const inputExtra = document.querySelector('.form__input-extra');
-const buttonElement = form.querySelector(".form__submit-button");
-const cardTrash = document.querySelector('.card__delete-button');
+/*import  {Card} from '../components/card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import {form, popup, inputName, inputExtra, buttonElement, cardTrash} from '../utils/constants.js';
         
 
 const handleEditProfileClick = () => {
@@ -101,4 +96,4 @@ form.addEventListener ('submit', (event) => {
 
 
 
-export { handleEditProfileClick, handleAddPlaceClick, popupClose as clickPopupClose, handleEscapeKeyPopupClose, handleOutsideClick };
+export { handleEditProfileClick, handleAddPlaceClick, popupClose as clickPopupClose, handleEscapeKeyPopupClose, handleOutsideClick };*/

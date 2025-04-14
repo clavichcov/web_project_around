@@ -11,11 +11,22 @@
     z-index: 1000;
 }
 
-.popup__opened {
+.popup__opened_form {
     display: grid; 
 }
 
-.popup__close {
+.popup__opened_img {
+    display: flex;
+}
+
+.popup__image {
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: scale-down;
+    align-self: center;
+}
+
+.popup__close-button-form {
        
     padding: 0;
     right: 10px;
@@ -28,7 +39,30 @@
     border: none;
 }
 
-.popup__close:hover {
+.popup__close-button-form:hover {
+    opacity: 60%;
+    cursor: pointer;
+}
+
+.popup__close-button-img {
+    position: absolute;
+    align-self: flex-start;
+    flex-direction: row-reverse;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    background-image: url('../images/close-icon.png');
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    top: 10px;
+    right: 10px;
+    z-index: 1001;
+}
+
+.popup__close-button-img:hover,
+.popup__close-button-img:focus {
     opacity: 60%;
     cursor: pointer;
 }
@@ -40,6 +74,28 @@
     width: 471px;
     border-radius: 10px;
     color: #000000;
+}
+
+.popup__container {
+    position: relative;
+    display: flex;
+    max-width: 880px;
+    max-height: 80vh;
+    margin: auto;
+    flex-direction: column;
+    
+}
+
+.popup__title {    
+    color: #FFFFFF;
+    font-size: 24px;
+    font-family: 'Inter Black', Inter, sans-serif;
+    justify-self: unset;
+    margin: 10px 0;
+    padding: 10px;
+    /*background-color: rgba(0, 0, 0, 0.7);*/
+    width: 100%;
+    border-radius: 0 0 10px 10px;
 }
 
 .form {
@@ -110,11 +166,20 @@
         position: relative;
     }
 
-    .popup__close {
+    .popup__close-button-form {
         position: absolute;
         width: 26px;
         height: 26px;
    }
+
+   .popup__container {
+    width: 768px;
+    }
+
+    
+    .popup__close-button-img {
+    position: absolute;
+    }
 
 }
 
@@ -129,11 +194,19 @@
         left: auto;
     }
 
-    .popup__close {
+    .popup__close-button-form {
         right: 3px;
         position: absolute;
         width: 26px;
         height: 26px;
+    }
+
+    .popup__container {
+        width: 320px;
+    }
+    .popup__close-button-img {
+        width: 15px;
+        height: 15px;
     }
 
     .form {

@@ -1,0 +1,26 @@
+{
+  "name": "tripleten",
+  "version": "0.0.1",
+  "description": "Educational platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test especified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clavichcov/web_project_around.git"
+  },
+  "keywords": [
+    "education",
+    "learning",
+    "tripleten",
+    "web-development",
+    "javascript"
+  ],
+  "author": "Alexander Artemiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clavichcov/web_project_around/issues"
+  },
+  "homepage": "https://github.com/clavichcov/web_project_around#readme"
+}
