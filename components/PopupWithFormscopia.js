@@ -82,7 +82,6 @@ export class PopupWithFormProfile extends Popup {
 export class PopupWithFormAddPlace extends Popup {
     constructor (popupSelector, ) {
         super(popupSelector);
-        //this._handleFormSubmit = handleFormSubmit;
         this._form = this._popup.querySelector('.form');
         this._submitButton = this._popup.querySelector('.form__submit-button');
         this._formCloseButton = this._popup.querySelector('#popup-close')

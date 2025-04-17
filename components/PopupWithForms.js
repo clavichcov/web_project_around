@@ -36,7 +36,6 @@ export class PopupWithForm extends Popup {
       this._form.reset();
       if (this._formType === 'profile') {
             this._configureAsProfileForm();
-            //this._popup.classList.remove('popup__opened_img');
             this._popup.classList.add('popup__opened_form');
             this._closeButton.classList.add('popup__close-button-form');
             const { name, about } = this._userInfo.getUserInfo();
@@ -46,7 +45,6 @@ export class PopupWithForm extends Popup {
             extraInput.value = about;
       } else if (this._formType === 'place') {
                     this._configureAsPlaceForm();
-                    //this._popup.classList.remove('popup__opened_form');
                     this._popup.classList.add('popup__opened_img');
                     this._closeButton.classList.add('popup__close-button-form');
       }

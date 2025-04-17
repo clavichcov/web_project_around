@@ -1,16 +1,16 @@
-// Importaciones de exports nombrados (clases individuales)
+
 import { Card } from '../components/card.js';
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/userinfo.js';
 import {cardsItems,  cardElements, editProfileButton, addPlaceButton, popupClose } from '../utils/constants.js';
 import {PopupWithForm } from '../components/PopupWithForms.js';
-// Importacion de export por defecto 
+
 import  PopupWithImage  from '../components/PopupWithImage.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     
     const popupWithImage = new PopupWithImage('#popup-image');
-    // Nueva instancia de CardList con los elementos de cardsItems y el renderizador de card
+    
     const cardList = new Section({
         items: cardsItems,
         renderer: (item) => {
@@ -23,14 +23,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }, '.elements');
     cardList.renderItems();
     
-    // Nueva instancia de userInfo para manejar la información del usuario
-    
+        
     const userInfo = new UserInfo({
         name: '.profile__title',
         about: '.profile__text'
     });    
         
-    //Nueva instancia de PopupWithForms para manejar el formulario del perfil
+    
     const popupWithForm = new PopupWithForm('#popup-edit', {
         handleFormSubmit: (data) => {
           if (popupWithForm._formType === 'profile') {
