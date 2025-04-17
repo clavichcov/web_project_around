@@ -5,28 +5,25 @@ export default class Popup {
     // También inicializa los elementos del popup y los métodos para manejar eventos.
     constructor(popupSelector) {
         this._popup = document.querySelector(popupSelector);
-        //this._closeButton = this._popup.querySelector('.popup__close');
         this._handleEscClose = this._handleEscClose.bind(this);
         this._handleOverlayClose = this._handleOverlayClose.bind(this);
     }
     // El método open abre el popup y agrega los eventos de teclado y clic al overlay.
     open() {
-        //this._popup.classList.add('popup__opened');
-        this._form.reset();
+        
+        //this._form.reset();
         document.addEventListener('keydown', this._handleEscClose);
         document.addEventListener('click', this._handleOverlayClose);
     }
     // El método close cierra el popup, elimina los eventos de teclado y clic del overlay; quita la clase popup_opened.
     close() {
-        //this._popup.classList.remove('popup__opened');
+        
         document.removeEventListener('keydown', this._handleEscClose);
         document.removeEventListener('click', this._handleOverlayClose);
         if (this._popup.classList.contains('popup__opened_img')) {
-            this._imageCloseButton.removeEventListener('click', () => this.close());
             this._popup.classList.remove('popup__opened_img');
         } else {
             if (this._popup.classList.contains('popup__opened_form')) {
-                this._formCloseButton.removeEventListener('click', () => this.close());
                 this._popup.classList.remove('popup__opened_form');
             }
         }

@@ -62,6 +62,7 @@
                             class="form__input form__input-name"
                             type="text"
                             id="form-input-name"
+                            name="name"
                             required
                         />
                         <span class="form__error" id="form-input-name-error"></span>
@@ -71,16 +72,17 @@
                             class="form__input form__input-extra"
                             type="text"
                             id="form-input-extra"
+                            name="extra"
                             required
                         />
-                        <span class="form__error" id="form__input-extra-error"></span>
+                        <span class="form__error" id="form-input-extra-error"></span>
                     </div>
                     <button type="submit" class="form__submit form__submit-button" id="form-button-submit"></button>
                 </form>
                 <button class="popup__close" id="popup-close"></button>
             </div>
         </section>
-        <section class="popup" id="image-popup">
+        <section class="popup" id="popup-image">
             <div class="popup__container">
                 <img class="popup__image" id="modal-image" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
                 <h2 class="popup__title" id="modal-title">Lago di Braies</h2>
@@ -88,7 +90,7 @@
             </div>
 
         </section>
-        <template id="card-template"><!-- Template -->
+        <template id="card-template" class="card__template"><!-- Template -->
             <article class="card">
                 <div class="card__container">
                     <div class="card__header">

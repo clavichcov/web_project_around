@@ -3,16 +3,13 @@ import { Card } from '../components/card.js';
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/userinfo.js';
 import {cardsItems,  cardElements, editProfileButton, addPlaceButton, popupClose } from '../utils/constants.js';
-import {PopupWithFormAddPlace, PopupWithFormProfile } from '../components/PopupWithForms.js';
+import {PopupWithForm } from '../components/PopupWithForms.js';
 // Importacion de export por defecto 
 import  PopupWithImage  from '../components/PopupWithImage.js';
 
-/*import { handleEditProfileClick, handleAddPlaceClick, clickPopupClose, handleEscapeKeyPopupClose, handleOutsideClick} from '../utils/utils.js';*/
-
-
 document.addEventListener('DOMContentLoaded', () => {
     
-    const popupWithImage = new PopupWithImage('#image-popup');
+    const popupWithImage = new PopupWithImage('#popup-image');
     // Nueva instancia de CardList con los elementos de cardsItems y el renderizador de card
     const cardList = new Section({
         items: cardsItems,
@@ -20,55 +17,47 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = new Card(
                 item.name, 
                 item.link, 
-                '.card',(name, link)  => popupWithImage.open(name, link));
-            cardList.addItem(card.getView());
+                '#card-template',(name, link)  => popupWithImage.open(name, link));
+                cardList.addItem(card.getView());
         }
     }, '.elements');
+    cardList.renderItems();
+    
     // Nueva instancia de userInfo para manejar la información del usuario
+    
     const userInfo = new UserInfo({
         name: '.profile__title',
-        text: '.profile__text'
-                
-    });
-    //Nueva instancia de PopupWithImage para manejar el modal de imagen
-    
-    document.querySelectorAll('.card__image').forEach((image) => {
-        image.addEventListener('click', () => {
-            const cardTitle = image.closest('.card__container').querySelector('.card__title').textContent;
-            const cardImage = image.src;
-            
-        });
-    });
-
-    //Nueva instancia de PopupWithForms para manejar el formulario del perfil
-    const popupWithFormProfile = new PopupWithFormProfile('#popup-edit', {
-        _handleFormSubmit: (data) => {
-        const profileTitle = document.querySelector('.profile__title');
-        const profileText = document.querySelector('.profile__text');
-        profileTitle.textContent = data.name;
-        profileText.textContent = data.extra;
+        about: '.profile__text'
+    });    
         
-        }
-    });
-
-    const popupWithFormAddPlace = new PopupWithFormAddPlace('#popup-edit', {
-        _handleFormSubmit: (data) => {
+    //Nueva instancia de PopupWithForms para manejar el formulario del perfil
+    const popupWithForm = new PopupWithForm('#popup-edit', {
+        handleFormSubmit: (data) => {
+          if (popupWithForm._formType === 'profile') {
+            userInfo.setUserInfo({
+              name: data.name,
+              about: data.extra
+            });
+          } else if (popupWithForm._formType === 'place') {
             const card = new Card(
-                data.name, 
-                data.link, 
-                '.card',(name, link)  => popupWithImage.open(name, link));
+              data.name,
+              data.extra,
+              '#card-template',
+              (name, link) => popupWithImage.open(name, link)
+            );
             cardList.addItem(card.getView());
+          }
         }
-    });
-    // Renderiza los elementos de cardsItems en el contenedor .elements de la página web
-    cardList.renderItems();
-
+      });
     
-    editProfileButton.addEventListener('click', () => {popupWithFormProfile.open();});
-    addPlaceButton.addEventListener('click', () => {popupWithFormAddPlace.open();});
-    //addPlaceButton.addEventListener('click', handleAddPlaceClick);
-    /*popupClose.addEventListener('click', clickPopupClose);
-    document.addEventListener('keydown', handleEscapeKeyPopupClose);
-    document.addEventListener('click', handleOutsideClick);*/
+    
+      editProfileButton.addEventListener('click', () => {
+        popupWithForm.setFormType('profile', userInfo);
+        popupWithForm.open();
+      });
+      addPlaceButton.addEventListener('click', () => {
+        popupWithForm.setFormType('place');
+        popupWithForm.open()
+    });
     
 });
