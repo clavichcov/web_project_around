@@ -27,6 +27,7 @@
     getView(){
         this._element = this._getTemplate();
         this._element.querySelector('.card__title').textContent = this._title;
+        this._element.querySelector('.card__image').alt = this._title;
         this._element.querySelector('.card__image').src = this._imageUrl;
         this._setEventListeners();
         return this._element;

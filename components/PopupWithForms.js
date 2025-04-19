@@ -103,7 +103,7 @@ export class PopupWithForm extends Popup {
         inputs.forEach((input) => {
             inputValues[input.name] = input.value;
         });
-        return inputValues;
+    return inputValues;
         
     }
     close() {
