@@ -1,8 +1,10 @@
 
 export default class Popup {
     
-    constructor(popupSelector) {
+    constructor(popupSelector, formType) {
         this._popup = document.querySelector(popupSelector);
+        this._formType = formType;
+        this._closeButton = this._popup.querySelector('.popup__close_button');
         this._handleEscClose = this._handleEscClose.bind(this);
         this._handleOverlayClose = this._handleOverlayClose.bind(this);
     }
@@ -14,16 +16,20 @@ export default class Popup {
     }
     
     close() {
-        
-        document.removeEventListener('keydown', this._handleEscClose);
-        document.removeEventListener('click', this._handleOverlayClose);
-        if (this._popup.classList.contains('popup__opened_img')) {
-            this._popup.classList.remove('popup__opened_img');
-        } else {
-            if (this._popup.classList.contains('popup__opened_form')) {
-                this._popup.classList.remove('popup__opened_form');
-            }
-        }
+        if (this._formType ==="profileEdit"){
+            this._popup.classList.remove('popup__profile_opened');
+            this._form.reset();
+          } else if (this._formType ==="addPlace") {
+            this._popup.classList.remove('popup__addPlace_opened');
+            this._form.reset();
+          } else if (this._formType ==="cardDelete") {
+            this._popup.classList.remove('popup__card_delete_opened');
+            
+          } else if (this._formType ==="changeImgProfile") {
+            this._popup.classList.remove('popup__change_imgprofile_opened');
+            this._form.reset();
+          }
+          
         
     }
     

@@ -1,102 +1,203 @@
 import Popup from './Popup.js';
 import { FormValidator } from './FormValidator.js';
-import { UserInfo } from './userinfo.js';
-import { inputName, inputExtra } from '../utils/constants.js';
-export class PopupWithForm extends Popup {
+
+import { inputNameProfile, inputAboutProfile, inputNamePlace, inputUrlPlace, inputUrlImgProfile } from '../utils/constants.js';
+
+  class PopupWithForm extends Popup {
     constructor(popupSelector, { handleFormSubmit, formType, userInfo }) {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
         this._formType = formType;
         this._userInfo = userInfo;
-        this._form = this._popup.querySelector('.form');
-        this._submitButton = this._popup.querySelector('.form__submit-button');
-        this._closeButton = this._popup.querySelector('#popup-close');
-        
+        if (this._formType ==="profileEdit"){
+          this._form = this._popup.querySelector('.form__profile');
+          this._submitButton = this._popup.querySelector('.form__profile_submit');
+          this._closeButton = this._popup.querySelector('#popup--close-button');
+          this._submitButtonText = this._submitButton.textContent;
+        } else if (this._formType ==="addPlace") {
+          this._form = this._popup.querySelector('.form__place');
+          this._submitButton = this._popup.querySelector('.form__place_submit');
+          this._closeButton = this._popup.querySelector('#popup--close-button');
+          } else if (this._formType ==="cardDelete") {
+          this._form = this._popup.querySelector('.form__card_delete');
+          this._submitButton = this._popup.querySelector('.form__submit_card-delete-button');
+          this._closeButton = this._popup.querySelector('#popup--close-button');
+        } else if (this._formType ==="changeImgProfile") {
+          this._form = this._popup.querySelector('.form__change_imgprofile');
+          this._submitButton = this._popup.querySelector('.form__change_imgprofile-button');
+          this._closeButton = this._popup.querySelector('#popup--close-button');
+          
+        }
         this._setEventListeners();
       
     }
 
+    _showLoading(isLoading) {
+      if (isLoading) {
+        if(this._formType ==="profileEdit"){
+          const loadingText = 'Guardando...';
+          this._submitButton.textContent = loadingText;
+          this._submitButton.disabled = true;
+        } else if (this._formType ==="addPlace") {
+          const loadingText = 'Creando...'
+          this._submitButton.textContent = loadingText;
+          this._submitButton.disabled = true;
+        } else if (this._formType ==="changeImgProfile") {
+          const loadingText = 'Guardando...';
+          this._submitButton.textContent = loadingText;
+          this._submitButton.disabled = true;
+        }
+      } else {
+          this._submitButton.textContent = this._submitButtonText;
+          this._submitButton.disabled = false;
+      }
+  }
     _setEventListeners() {
+      super.setEventListeners();
+      if (this._formType ==="profileEdit"){
         this._form.addEventListener('submit', (evt) => {
           evt.preventDefault();
-      
-          if (this._formType === 'profile') {
-            this._handleFormSubmit(this._getInputValues());
-          } else if (this._formType === 'place') {
-            this._handleFormSubmit(this._getInputValues());
-          }
-      
+          this._showLoading(true);
+          this._handleFormSubmit(this._getInputValues())
+          .then(()=> {
+            this._userInfo.setUserInfo(this._getInputValues());
+            const formType = this._formType;
+            this.close(formType);
+          })
+          .catch(err => {
+            console.error('Error al actualizar el perfil:', err)
+          })
+          .finally(() => {
+            this._showLoading(false);
+          });
+          
+          
+        });
+        this._closeButton.addEventListener('click', (formType) => {
+          this.close(formType);
+        });
+      } else if (this._formType ==="addPlace") {
+        this._form.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+          this._showLoading(true);
+          this._handleFormSubmit(this._getInputValues())
+          .then(() => {
+            const formType = this._formType;
+            this.close(formType);
+          })
+          .catch(err => {
+            console.error('Error al añadir tarjeta:', err)
+          })
+          .finally(() => {
+            this._showLoading(false)
+          });
+          
+        });
+        this._closeButton.addEventListener('click', (formType) => {
+          this.close(formType);
+        });
+      } else if (this._formType ==="cardDelete") {
+        this._form.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+          this._handleFormSubmit();
           this.close();
         });
-      
-        this._closeButton.addEventListener('click', () => this.close());
+        this._closeButton.addEventListener('click', (formType) => {
+          this.close(formType);
+        });
+      } else if (this._formType ==="changeImgProfile") {
+        this._form = this._popup.querySelector('.form__change_imgprofile');
+        this._form.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+          this._showLoading(true);
+          this._handleFormSubmit(this._getInputValues())
+          .then(() => {
+            const formType = this._formType;
+            this.close(formType);
+          })
+          .catch(err => {
+            console.error('Error al actualizar la imagen de perfil:', err)
+          })
+          .finally(() => {
+            this._showLoading(false);
+          });
+          
+        });
+        this._closeButton.addEventListener('click', (formType) => {
+          this.close(formType);
+        });
+      }
+        
       }
     open() {
       super.open();
-      this._form.reset();
-      if (this._formType === 'profile') {
-            this._configureAsProfileForm();
-            this._popup.classList.add('popup__opened_form');
-            this._closeButton.classList.add('popup__close-button-form');
+      
+      if (this._formType === 'profileEdit') {
+            //this._form.reset('.form__profile');
+            this._popup.classList.add('popup__profile_opened');
             const { name, about } = this._userInfo.getUserInfo();
-            const nameInput = this._form.querySelector('#form-input-name');
-            const extraInput = this._form.querySelector('#form-input-extra');
+            const nameInput = this._form.querySelector('#form--profile-input-name');
+            const aboutInput = this._form.querySelector('#form--profile-input-about');
             nameInput.value = name;
-            extraInput.value = about;
-      } else if (this._formType === 'place') {
-                    this._configureAsPlaceForm();
-                    this._popup.classList.add('popup__opened_img');
-                    this._closeButton.classList.add('popup__close-button-form');
-      }
-      const validatorProfile = new FormValidator(
+            aboutInput.value = about;
+            const validatorProfile = new FormValidator(
+              this._form, 
+              [inputNameProfile, inputAboutProfile], 
+              this._submitButton
+              
+            );
+            validatorProfile.enableValidation();
+            
+      } else if (this._formType === 'addPlace') {
+                this._popup.classList.add('popup__addPlace_opened');
+                const nameInput = this._form.querySelector('#form--input-name-place');
+                const placeInput = this._form.querySelector('#form--input-url-place');
+                nameInput.value = '';
+                placeInput.value = '';
+                const validatorPlace = new FormValidator(
+                  this._form, 
+                [inputNamePlace, inputUrlPlace], 
+                this._submitButton
+                );
+                validatorPlace.enableValidation();
+
+        } else if (this._formType === 'changeImgProfile') {
+            this._popup.classList.add('popup__change_imgprofile_opened');
+            const nameInput = this._form.querySelector('#form--input-change-link');
+            nameInput.value = '';
+            const validatorChangeImgProfile = new FormValidator(
+              this._form, 
+            [inputUrlImgProfile], 
+            this._submitButton
+            );
+            validatorChangeImgProfile.enableValidation();
+        } else if (this._formType === 'cardDelete') {
+            this._popup.classList.add('popup__card_delete_opened');
+        }
+
+
+      /*const validatorProfile = new FormValidator(
         this._form, 
-        [inputName, inputExtra], 
+        [inputNameProfile, inputAboutProfile], 
         this._submitButton
-        
-        );
+      );
+      const validatorPlace = new FormValidator(
+          this._form, 
+        [inputNamePlace, inputUrlPlace], 
+        this._submitButton
+      );
+      const validatorChangeImgProfile = new FormValidator(
+        this._form, 
+      [inputUrlImgProfile], 
+      this._submitButton
+      );
         validatorProfile.enableValidation();
-        validatorProfile._toggleButtonState();
+        validatorPlace.enableValidation();
+        validatorChangeImgProfile.enableValidation();*/
+        
     }
 
-    setFormType(formType, userInfo = null) {
-        this._formType = formType;
-        this._userInfo = userInfo;
-      }
-  
-    _configureAsProfileForm() {
-      this._submitButton.textContent = 'Guardar';
-      this._submitButton.classList.add('form__submit-button-profile');
-      this._submitButton.classList.remove('form__submit-button-place');
-
-      const nameInput = this._form.querySelector('#form-input-name');
-      const extraInput = this._form.querySelector('#form-input-extra');
-      nameInput.placeholder = 'Nombre';
-      extraInput.placeholder = 'Acerca de mí';
-      extraInput.type = 'text';
-      this._popup.querySelector('#form-input-name').maxLength = 40;
-      this._popup.querySelector('#form-input-name').minLength = 2;
-      this._popup.querySelector('#form-input-extra').maxLength = 200;
-      this._popup.querySelector('#form-input-extra').minLength = 2;
-      
-    }
-  
-    _configureAsPlaceForm() {
-      this._submitButton.textContent = 'Crear';
-      this._submitButton.classList.remove('form__submit-button-profile');
-      this._submitButton.classList.add('form__submit-button-place');
-      const nameInput = this._form.querySelector('#form-input-name');
-      const extraInput = this._form.querySelector('#form-input-extra');
-      nameInput.placeholder = 'Título';
-      extraInput.placeholder = 'Enlace a la imagen';
-      extraInput.type = 'url';
-      nameInput.value = '';
-      extraInput.value = '';
-      
-      this._popup.querySelector('#form-input-name').maxLength = 30;
-      this._popup.querySelector('#form-input-name').minLength = 2;
-      this._popup.querySelector('#form-input-extra').minLength = 2;
-    }
-  
+     
     _getInputValues() {
         const inputValues = {};
         const inputs = Array.from(this._form.querySelectorAll('.form__input'));
@@ -106,8 +207,11 @@ export class PopupWithForm extends Popup {
     return inputValues;
         
     }
-    close() {
-        super.close();
-        this._form.reset();
+    close(formType) {
+        super.close(formType);
+        
     }
   }
+  export { PopupWithForm }
+
+

@@ -31,6 +31,7 @@ export class FormValidator {
                     } else {
                             this._hideInputError(inputElement);
                         }
+        this._toggleButtonState();
     }
 
     _isValidUrl(url) {
@@ -66,7 +67,7 @@ export class FormValidator {
             evt.preventDefault();
         });
         this._setEventListeners();
-        
+        this._toggleButtonState();
     }
 
     _setEventListeners() {

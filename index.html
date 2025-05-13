@@ -25,12 +25,15 @@
                                 alt="Foto de Jacques Cousteau"
                                 class="profile__image"
                             />
+                            <div class="avatar__overlay">
+                                <img src="./images/btn-edit.png" alt="Editar" class="edit__icon" />
+                            </div>
                         </div>
                         <div class="profile__info">
-                            <h1 class="profile__title">Jacques Cousteau</h1>
+                            <h1 class="profile__title">Nombre</h1>
                             <button class="profile__edit"></button>
                             <div class="profile__text-wrapper">
-                                <p class="profile__text">Explorador</p>
+                                <p class="profile__text">Cargo</p>
                                 <div class="profile__text-hidden" style="display: none;"></div>
                             </div>
                         </div>
@@ -44,51 +47,134 @@
                     </button>
                 </section> 
                 <section class="elements">
-                    <!-- Aquí se agregarán las tarjetas dinámicamente -->
+                    <!-- Aquí se agregarán las tarjetas -->
                 </section> 
             </main>
             <footer class="footer">
                 <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
             </footer> 
         </div>
-
-        <!-- Popup para editar perfil y añadir lugar -->
-        <section class="popup" id="popup-edit">
-            <div class="popup__content">
-                <form class="form" id="form-popup" novalidate> 
-                    <h2 class="form__title" id="form-title-name"></h2>
-                    <div class="form__wrapper">
-                        <input
-                            class="form__input form__input-name"
-                            type="text"
-                            id="form-input-name"
-                            name="name"
-                            required
-                        />
-                        <span class="form__error" id="form-input-name-error"></span>
-                    </div>
-                    <div class="form__wrapper">
-                        <input
-                            class="form__input form__input-extra"
-                            type="text"
-                            id="form-input-extra"
-                            name="extra"
-                            required
-                        />
-                        <span class="form__error" id="form-input-extra-error"></span>
-                    </div>
-                    <button type="submit" class="form__submit form__submit-button" id="form-button-submit"></button>
-                </form>
-                <button class="popup__close" id="popup-close"></button>
+        <section class="popup popup__empty" id="popup--empty">
+            <div class="popup__empty-content">
+                <form class="form form__empty" id="form--empty"></form>
+                <button type="submit submit__empty" style="display: none"></button>
+                <button class="popup__empty_button-close" id="popup--empty-button-close" 
+                style="display: none"></button>
             </div>
         </section>
-        <section class="popup" id="popup-image">
-            <div class="popup__container">
-                <img class="popup__image" id="modal-image" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
-                <h2 class="popup__title" id="modal-title">Lago di Braies</h2>
-                <button class="popup__close-button" id="popup-close-button"></button>
+            
+        <section class="popup popup__profile" id="popup--profile-edit">
+            <div class="popup__profile-content">
+                <form class="form form__profile" id="form--profile-edit" novalidate> 
+                    <h2 class="form__title" id="form--profile-title-name">Editar perfil</h2>
+                    <div class="form__wrapper">
+                        <input
+                            class="form__input form__input_name"
+                            type="text"
+                            id="form--profile-input-name"
+                            name="name"
+                            placeholder="Nombre"
+                            minlength="2"
+                            maxlength="40"
+                            required
+                        />
+                        <span class="form__error" id="form--profile-input-name-error"></span>
+                    </div>
+                    <div class="form__wrapper">
+                        <input
+                            class="form__input form__input_about"
+                            type="text"
+                            id="form--profile-input-about"
+                            name="about"
+                            placeholder="Acerca de mí"
+                            minlength="2"
+                            maxlength="200"
+                            required
+                        />
+                        <span class="form__error" id="form--profile-input-about-error"></span>
+                    </div>
+                    <button type="submit" class="form__profile_submit form__profile_submit-button" id="form--profile-button-submit">Guardar</button>
+                </form>
+                <button class="popup__close_button" id="popup--close-button"></button>
             </div>
+             
+        </section>
+        <section class="popup popup__place" id="popup--place-edit">
+            <div class="popup__place-content">
+                <form class="form form__place" id="form--place-edit" novalidate> 
+                    <h2 class="form__title" id="form--title-name">Nuevo lugar</h2>
+                    <div class="form__wrapper">
+                        <input
+                            class="form__input form__input_name-place"
+                            type="text"
+                            id="form--input-name-place"
+                            name="name"
+                            placeholder="Título"
+                            minlength="2"
+                            maxlength="30"
+                            required
+                        />
+                        <span class="form__error" id="form--input-name-place-error"></span>
+                    </div>
+                    <div class="form__wrapper">
+                        <input
+                            class="form__input form__input_url-place"
+                            type="url"
+                            id="form--input-url-place"
+                            name="place"
+                            placeholder="Enlace a la imagen"
+                            minlength="2"
+                            required
+                        />
+                        <span class="form__error" id="form--input-url-place-error"></span>
+                    </div>
+                    <button type="submit" class="form__place_submit form__place_submit-button" id="form--button-submit-place">Crear</button>
+                </form>
+                <button class="popup__close_button" id="popup--close-button"></button>
+            </div>
+        </section>
+        <section class="popup popup__card_delete" id="popup--card-delete">
+            
+                <div class="popup__card_delete-content">
+                    <form class="form form__card_delete" id="form--popup-card-delete" novalidate> 
+                        <h2 class="form__title" id="form--title-card-delete">¿Estas seguro de eliminar la tarjeta?</h2>
+                    
+                        <button type="submit" class="form__submit form__submit-delete-button" id="form--submit-button-delete">Sí</button>
+                    </form>
+                    <button class="popup__close_button" id="popup--close-button"></button>
+                </div>
+            
+        </section>
+        <section class="popup popup__change_imgprofile" id="popup--change-imgprofile">
+            
+                <div class="popup__change_imgprofile-content">
+                    <form class="form form__change_imgprofile" id="form-change-imgprofile" novalidate> 
+                        <h2 class="form__title" id="form-title-image">Cambiar foto de perfil</h2>
+                        <div class="form__wrapper">
+                            <input
+                                class="form__input form__input_imgprofile-url"
+                                placeholder="Enlace de la imagen"
+                                type="url"
+                                id="form--input-change-link"
+                                name="avatar"
+                                required
+                            />
+                            <span class="form__error" id="form--input-change-link-error"></span>
+                        </div>
+                        <button type="submit" class="form__change_submit form__change_imgprofile-button" id="form-button-submit-image">Guardar</button>
+                    </form>
+                    <button class="popup__close_button" id="popup--close-button"></button>
 
+                </div>
+            
+        </section>
+        <section class="popup popup__image" id="popup-image">
+            <div class="popup__image_content">
+                <img class="popup__image_background" id="popup--image-background" src="https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg" alt="">
+                <h2 class="popup__image_title" id="popup--image-title">Lago di Braies</h2>
+                <button class="popup__close_button popup__image_close-button" id="popup--close-button"></button>
+            </div>
+            
         </section>
         <template id="card-template" class="card__template"><!-- Template -->
             <article class="card">
