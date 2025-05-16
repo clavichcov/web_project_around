@@ -4,11 +4,12 @@ import { FormValidator } from './FormValidator.js';
 import { inputNameProfile, inputAboutProfile, inputNamePlace, inputUrlPlace, inputUrlImgProfile } from '../utils/constants.js';
 
   class PopupWithForm extends Popup {
-    constructor(popupSelector, { handleFormSubmit, formType, userInfo }) {
+    constructor(popupSelector, { handleFormSubmit, formType, userInfo, cardList }) {
         super(popupSelector);
         this._handleFormSubmit = handleFormSubmit;
         this._formType = formType;
         this._userInfo = userInfo;
+        this._cardList = cardList;
         if (this._formType ==="profileEdit"){
           this._form = this._popup.querySelector('.form__profile');
           this._submitButton = this._popup.querySelector('.form__profile_submit');
@@ -133,7 +134,6 @@ import { inputNameProfile, inputAboutProfile, inputNamePlace, inputUrlPlace, inp
       super.open();
       
       if (this._formType === 'profileEdit') {
-            //this._form.reset('.form__profile');
             this._popup.classList.add('popup__profile_opened');
             const { name, about } = this._userInfo.getUserInfo();
             const nameInput = this._form.querySelector('#form--profile-input-name');
@@ -175,25 +175,6 @@ import { inputNameProfile, inputAboutProfile, inputNamePlace, inputUrlPlace, inp
             this._popup.classList.add('popup__card_delete_opened');
         }
 
-
-      /*const validatorProfile = new FormValidator(
-        this._form, 
-        [inputNameProfile, inputAboutProfile], 
-        this._submitButton
-      );
-      const validatorPlace = new FormValidator(
-          this._form, 
-        [inputNamePlace, inputUrlPlace], 
-        this._submitButton
-      );
-      const validatorChangeImgProfile = new FormValidator(
-        this._form, 
-      [inputUrlImgProfile], 
-      this._submitButton
-      );
-        validatorProfile.enableValidation();
-        validatorPlace.enableValidation();
-        validatorChangeImgProfile.enableValidation();*/
         
     }
 

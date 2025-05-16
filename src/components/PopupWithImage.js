@@ -4,7 +4,7 @@ export default class PopupWithImage extends Popup {
     constructor(popupSelector) {
         super(popupSelector);
         this._image = this._popup.querySelector('#popup--image-background');
-        this._caption = this._popup.querySelector('#popup--image-background');
+        this._caption = this._popup.querySelector('#popup--image-title');
         this._imageCloseButton = this._popup.querySelector('#popup--close-button')
         this._imageCloseButton.addEventListener('click', () => this.close());
     }

@@ -1,4 +1,4 @@
-import {apiAcces} from '../components/API.js'
+import {apiAcces} from '../components/Api.js'
 import { Card } from '../components/card.js';
 import { Section } from '../components/Section.js';
 import { UserInfo } from '../components/userinfo.js';
@@ -8,15 +8,12 @@ import { PopupWithForm } from '../components/PopupWithForms.js';
 import  PopupWithImage  from '../components/PopupWithImage.js';
 
 
-    let cardList;
-    const popupWithImage = new PopupWithImage('#popup-image');
-    const userInfo = new UserInfo({
-        name: '.profile__title',
-        about: '.profile__text',
-        avatar: '.profile__image'
-    });
-    
-        
+const userInfo = new UserInfo({
+    name: '.profile__title',
+    about: '.profile__text',
+    avatar: '.profile__image'
+});
+
     const popupWithFormProfile = new PopupWithForm('#popup--profile-edit', {
       handleFormSubmit: (data) => {
         return apiAcces.updateUserInfo(data.name, data.about)
@@ -26,29 +23,14 @@ import  PopupWithImage  from '../components/PopupWithImage.js';
                       about: user.about
                     });
                   });
-                  //.catch(err => console.error('Error al actualizar el perfil:', err))
+                  
       },
       formType: 'profileEdit',
       userInfo,
 
     });
 
-    const popupWithFormPlace = new PopupWithForm('#popup--place-edit', {
-      handleFormSubmit: (data) => {
-        return apiAcces.addCard(data.name, data.place)
-            .then( newCard => {
-              const card = new Card(
-                newCard.name,
-                newCard.link,
-                '#card-template',
-                (name, link) => popupWithImage.open(name, link)
-              );
-              cardList.addItem(card.getView());
-            })
-        ;
-      },
-      formType: 'addPlace',
-    });
+    
         
     const popupWithFormChangeImgProfile = new PopupWithForm('#popup--change-imgprofile', {
       handleFormSubmit: (data) => {
@@ -56,31 +38,19 @@ import  PopupWithImage  from '../components/PopupWithImage.js';
             .then(user => {
               userInfo.setUserInfo({ avatar: user.avatar });
             });
-        //.catch(err => console.error('Error al actualizar la imagen de perfil:', err));
+        
       },
       formType: 'changeImgProfile',
     });
 
-    /*const popupWithFormCardDelete = new PopupWithForm('#popup--card-delete', {
-      handleFormSubmit: () => {
-          const cardId = popupWithFormCardDelete.getCardId();
-                apiAcces.deleteCard()
-                .then(() => {
-                  const cardElement = document.querySelector(`[data-card-id="${cardId}"]`);
-                  console.log(cardElement);
-                  if (cardElement) {
-                      popupWithFormCardDelete.open();
-                      cardElement.remove(cardId);
-                  }
-                  popupWithFormCardDelete.close();
-                })
-                .catch(err => console.error('Error al eliminar:', err));
-         
-        },
-      formType: 'cardDelete',
-      
-    });*/
-        
+    const popupWithImage = new PopupWithImage('#popup-image');
+    handleFormSubmit: (data) => {
+      userInfo({
+        name: user.name,
+        about: user.about
+      });
+    }
+   
     apiAcces.getUserInfo()
       .then( function (user) {
           const userId = user._id;
@@ -96,7 +66,7 @@ import  PopupWithImage  from '../components/PopupWithImage.js';
       });
     apiAcces.getInitialCards()
       .then( function (cardItems) {
-        cardList = new Section({
+        const cardList = new Section({
           items: cardItems,
           renderer: (item) => {
             
@@ -118,15 +88,34 @@ import  PopupWithImage  from '../components/PopupWithImage.js';
         }, '.elements');
       
           cardList.renderItems(cardItems);
-          
+          const popupWithFormPlace = new PopupWithForm('#popup--place-edit', {
+      
+            handleFormSubmit: (data) => {
+              return apiAcces.addCard(data.name, data.place)
+                  .then( newCard => {
+                    const card = new Card(
+                      newCard.name,
+                      newCard.link,
+                      '#card-template',
+                      (name, link) => popupWithImage.open(name, link)
+                    );
+                    
+                    cardList.addItem(card.getView());
+                  })
+              ;
+            },
+            formType: 'addPlace',
+            cardList
+          });
+          addPlaceButton.addEventListener('click', () => {
+            popupWithFormPlace.open()
+          });
       });
 
   editProfileButton.addEventListener('click', () => {
     popupWithFormProfile.open();
   });
-  addPlaceButton.addEventListener('click', () => {
-    popupWithFormPlace.open()
-  });
+  
 
   changeImgProfile.addEventListener('click', () => {
     popupWithFormChangeImgProfile.open();

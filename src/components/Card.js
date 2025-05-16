@@ -1,4 +1,4 @@
-import {apiAcces} from './API.js'
+import {apiAcces} from './Api.js'
 import { PopupWithForm } from './PopupWithForms.js';
    class Card {
     
