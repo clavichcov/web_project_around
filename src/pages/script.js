@@ -1,7 +1,7 @@
 import {apiAcces} from '../components/Api.js'
-import { Card } from '../components/card.js';
+import { Card } from '../components/Card.js';
 import { Section } from '../components/Section.js';
-import { UserInfo } from '../components/userinfo.js';
+import { UserInfo } from '../components/Userinfo.js';
 import { editProfileButton, addPlaceButton, changeImgProfile } from '../utils/constants.js';
 import { PopupWithForm } from '../components/PopupWithForms.js';
 
