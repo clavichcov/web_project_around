@@ -1,7 +1,7 @@
-.form__profile,
-.form__place,
-.form__card_delete,
-.form__change_imgprofile {
+.form--profile,
+.form--place,
+.form--card-delete,
+.form--change-imgprofile {
     display: flex;
     position: relative;
     padding-bottom: 25px;
@@ -91,10 +91,10 @@
         margin-top: 5px;
     }
 
-    .form__profile,
-    .form__place,
-    .form__card_delete,
-    .form__change_imgprofile {
+    .form--profile,
+    .form--place,
+    .form--card-delete,
+    .form--change-imgprofile {
         width: 320px;
     }
 

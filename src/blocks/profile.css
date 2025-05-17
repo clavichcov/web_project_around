@@ -6,12 +6,12 @@
     width: 880px;
 }
 
-.profile__content{
+.profile__container{
     display: flex;
     align-items: center;
 }
 
-.profile__avatar{
+.profile__avatar-container{
     display: flex;
     justify-content: center;
     width: 120px;
@@ -33,7 +33,7 @@
     
 }
 
-.avatar__overlay {
+.profile__overlay {
     
     position: absolute;
     top: 0;
@@ -50,12 +50,12 @@
     z-index: 1001;
 }
 
-.avatar__overlay:hover {
+.profile__overlay:hover {
     cursor: pointer;
     opacity: 100;
 }
 
-.edit__icon {
+.profile__edit-icon {
     width: 26px;
     height: 26px;
 }
@@ -123,7 +123,7 @@ profile__text-wrapper{
     white-space: normal;
   }
 
-.profile__edit{
+.profile__edit-button{
     margin-left: 18px;
     margin-top: 20px;
     height: 22px;
@@ -136,7 +136,7 @@ profile__text-wrapper{
     border: 2px solid #FFFFFF;
 }
 
-.profile__edit:hover{
+.profile__edit-button:hover{
     opacity: 60%;
     cursor: pointer;
 }
@@ -170,7 +170,7 @@ profile__text-wrapper{
         width: 581px;
     }
 
-    .profile__content{
+    .profile__container{
         flex-direction: column;
         justify-content: center;
         width: 581px;
@@ -202,7 +202,7 @@ profile__text-wrapper{
         flex-direction: column;
    }
 
-   .profile__content{
+   .profile__container{
     
         flex-direction: column;
         justify-content: center;

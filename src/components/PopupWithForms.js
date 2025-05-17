@@ -11,20 +11,20 @@ import { inputNameProfile, inputAboutProfile, inputNamePlace, inputUrlPlace, inp
         this._userInfo = userInfo;
         this._cardList = cardList;
         if (this._formType ==="profileEdit"){
-          this._form = this._popup.querySelector('.form__profile');
+          this._form = this._popup.querySelector('.form--profile');
           this._submitButton = this._popup.querySelector('.form__profile_submit');
           this._closeButton = this._popup.querySelector('#popup--close-button');
           this._submitButtonText = this._submitButton.textContent;
         } else if (this._formType ==="addPlace") {
-          this._form = this._popup.querySelector('.form__place');
+          this._form = this._popup.querySelector('.form--place');
           this._submitButton = this._popup.querySelector('.form__place_submit');
           this._closeButton = this._popup.querySelector('#popup--close-button');
           } else if (this._formType ==="cardDelete") {
-          this._form = this._popup.querySelector('.form__card_delete');
+          this._form = this._popup.querySelector('.form--card-delete');
           this._submitButton = this._popup.querySelector('.form__submit_card-delete-button');
           this._closeButton = this._popup.querySelector('#popup--close-button');
         } else if (this._formType ==="changeImgProfile") {
-          this._form = this._popup.querySelector('.form__change_imgprofile');
+          this._form = this._popup.querySelector('.form--change-imgprofile');
           this._submitButton = this._popup.querySelector('.form__change_imgprofile-button');
           this._closeButton = this._popup.querySelector('#popup--close-button');
           
@@ -107,7 +107,7 @@ import { inputNameProfile, inputAboutProfile, inputNamePlace, inputUrlPlace, inp
           this.close(formType);
         });
       } else if (this._formType ==="changeImgProfile") {
-        this._form = this._popup.querySelector('.form__change_imgprofile');
+        this._form = this._popup.querySelector('.form--change-imgprofile');
         this._form.addEventListener('submit', (evt) => {
           evt.preventDefault();
           this._showLoading(true);

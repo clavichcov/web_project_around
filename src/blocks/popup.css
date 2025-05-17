@@ -11,16 +11,16 @@
     z-index: 1000;
 }
 
-.popup__empty {
+.popup--empty {
     display:none;
 }
 
-.popup__profile{
+.popup--profile{
     display: none;
     
 }
 
-.popup__place{
+.popup--place{
     display: none;
     
 }
@@ -30,11 +30,11 @@
     
 }
 
-.popup__change_imgprofile {
+.popup--change-imgprofile {
     display: none;
 }
 
-.popup__image {
+.popup--image {
     display: none;
 }
 
@@ -78,7 +78,7 @@
     cursor: pointer;
 }
 
-.popup__image_close-button {
+.popup--image-close-button {
     position: absolute;
     align-self: flex-start;
     flex-direction: row-reverse;
@@ -95,13 +95,13 @@
     z-index: 1001;
 }
 
-.popup__image_close-button:hover,
-.popup__image_close-button:focus {
+.popup--image-close-button:hover,
+.popup--image-close-button:focus {
     opacity: 60%;
     cursor: pointer;
 }
 
-.popup__profile-content,
+.popup__profile_content,
 .popup__place-content,
 .popup__card_delete-content,
 .popup__change_imgprofile-content {
@@ -112,7 +112,7 @@
     color: #000000;
 }
 
-.popup__image_content {
+.popup--image-content {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -121,17 +121,17 @@
     align-self: center;
 }
 
-.popup__image_background {
+.popup__image-background {
     position: relative;
     display: flex;
-    max-width: 880px;
+    max-width: 80%;
     max-height: 80vh;
     margin: auto;
     flex-direction: column;
     
 }
 
-.popup__image_title {    
+.popup__image-title {    
     color: #FFFFFF;
     font-size: 24px;
     font-family: 'Inter Black', Inter, sans-serif;
@@ -149,12 +149,12 @@
         width: 768px;
     }
 
-    .popup__image_background {
+    .popup__image-background {
         max-width: 80%;
         max-height: 80vh;
     }
 
-    .popup__profile-content,
+    .popup__profile_content,
     .popup__place-content,
     .popup__card_delete-content,
     .popup__change_imgprofile-content {
@@ -162,7 +162,7 @@
         height: 371px;
     }
 
-    .popup__image_content {
+    .popup--image-content {
         width: 768px;
         
     }
@@ -173,11 +173,11 @@
         max-width: 320px;
     }
 
-    .popup__image_background {
+    .popup__image-background {
         max-width: 80%;
         max-height: 80vh;
     }
-    .popup__profile-content,
+    .popup__profile_content,
     .popup__place-content,
     .popup__card_delete-content,
     .popup__change_imgprofile-content {
@@ -187,7 +187,7 @@
         flex-direction:column-reverse;
     }
 
-    .popup__image_content {
+    .popup--image-content {
         width: 282px;
         
     }
